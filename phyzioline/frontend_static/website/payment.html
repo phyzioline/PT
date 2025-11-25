@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/website/payment.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Ask Your Doctor</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+     <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="d-flex align-items-center" href="index.html">
+                <img src="https://phyzioline.vercel.app/assets/images/medical-icons.svg" class="logo-w"> 
+                
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="doctors.html">Ask Your Doctor</a></li>
+                            <li><a class="dropdown-item" href="jobs.html">Find Jobs</a></li>
+                            <li><a class="dropdown-item" href="courses.html">Courses</a></li>
+                           
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-primary me-2" onclick="window.location.href='shopping-cart.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge bg-primary" id="cartCount">0</span>
+                    </button>
+                    <button class="btn btn-outline-primary me-2" onclick="window.location.href='notification.html'">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                     <div class="dropdown">
+                        
+                        <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="../client-dashboard/student-dashboard.html"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-in-up">Complete Payment</h1>
+            <p class="fade-in-up">Secure payment for your medical consultation</p>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Payment Progress -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <div class="payment-progress">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="step completed">
+                                        <div class="step-icon">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span>Appointment Request</span>
+                                    </div>
+                                    <div class="step-line completed"></div>
+                                    <div class="step completed">
+                                        <div class="step-icon">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span>Doctor Approval</span>
+                                    </div>
+                                    <div class="step-line active"></div>
+                                    <div class="step active">
+                                        <div class="step-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <span>Payment</span>
+                                    </div>
+                                    <div class="step-line"></div>
+                                    <div class="step">
+                                        <div class="step-icon">
+                                            <i class="fas fa-calendar-check"></i>
+                                        </div>
+                                        <span>Confirmation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Payment Form -->
+                        <div class="col-lg-8">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Payment Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Payment Method Selection -->
+                                    <div class="mb-4">
+                                        <h6 class="mb-3">Select Payment Method</h6>
+                                        <div class="payment-methods">
+                                            <div class="form-check payment-method-option">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="credit" checked>
+                                                <label class="form-check-label" for="creditCard">
+                                                    <i class="fas fa-credit-card me-2"></i>Credit/Debit Card
+                                                </label>
+                                            </div>
+                                            <div class="form-check payment-method-option">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="paypal" value="paypal">
+                                                <label class="form-check-label" for="paypal">
+                                                    <i class="fab fa-paypal me-2"></i>PayPal
+                                                </label>
+                                            </div>
+                                            <div class="form-check payment-method-option">
+                                                <input class="form-check-input" type="radio" name="paymentMethod" id="insurance" value="insurance">
+                                                <label class="form-check-label" for="insurance">
+                                                    <i class="fas fa-shield-alt me-2"></i>Health Insurance
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Credit Card Form -->
+                                    <div id="creditCardForm">
+                                        <form id="paymentForm">
+                                            <div class="mb-3">
+                                                <label for="cardNumber" class="form-label">Card Number</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                                                    <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                                                    <span class="input-group-text">
+                                                        <i class="fab fa-cc-visa text-primary"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" maxlength="5">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="cvv" class="form-label">CVV</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                        <input type="text" class="form-control" id="cvv" placeholder="123" maxlength="4">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="cardName" class="form-label">Cardholder Name</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                    <input type="text" class="form-control" id="cardName" placeholder="John Doe">
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Billing Address -->
+                                            <div class="mb-4">
+                                                <h6 class="mb-3">Billing Address</h6>
+                                                <div class="form-check mb-3">
+                                                    <input class="form-check-input" type="checkbox" id="sameAsProfile" checked>
+                                                    <label class="form-check-label" for="sameAsProfile">
+                                                        Same as profile address
+                                                    </label>
+                                                </div>
+                                                
+                                                <div id="billingAddress" style="display: none;">
+                                                    <div class="mb-3">
+                                                        <label for="address" class="form-label">Address</label>
+                                                        <input type="text" class="form-control" id="address" placeholder="123 Main Street">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-3">
+                                                            <label for="city" class="form-label">City</label>
+                                                            <input type="text" class="form-control" id="city" placeholder="New York">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="state" class="form-label">State</label>
+                                                            <input type="text" class="form-control" id="state" placeholder="NY">
+                                                        </div>
+                                                        <div class="col-md-3 mb-3">
+                                                            <label for="zipCode" class="form-label">ZIP Code</label>
+                                                            <input type="text" class="form-control" id="zipCode" placeholder="10001">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- PayPal Form -->
+                                    <div id="paypalForm" style="display: none;">
+                                        <div class="text-center py-4">
+                                            <i class="fab fa-paypal text-primary" style="font-size: 3rem;"></i>
+                                            <h6 class="mt-3">You will be redirected to PayPal to complete your payment</h6>
+                                            <p class="text-muted">Click "Pay Now" to proceed to PayPal's secure payment page</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Insurance Form -->
+                                    <div id="insuranceForm" style="display: none;">
+                                        <div class="mb-3">
+                                            <label for="insuranceProvider" class="form-label">Insurance Provider</label>
+                                            <select class="form-select" id="insuranceProvider">
+                                                <option value="">Select your insurance provider</option>
+                                                <option value="aetna">Aetna</option>
+                                                <option value="bluecross">Blue Cross Blue Shield</option>
+                                                <option value="cigna">Cigna</option>
+                                                <option value="humana">Humana</option>
+                                                <option value="kaiser">Kaiser Permanente</option>
+                                                <option value="united">UnitedHealth</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="policyNumber" class="form-label">Policy Number</label>
+                                            <input type="text" class="form-control" id="policyNumber" placeholder="Enter your policy number">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="groupNumber" class="form-label">Group Number</label>
+                                            <input type="text" class="form-control" id="groupNumber" placeholder="Enter your group number">
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            Your insurance coverage will be verified. You may be responsible for copayments or deductibles.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="col-lg-4">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Appointment Summary</h5>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Doctor Info -->
+                                    <div class="d-flex align-items-center mb-3">
+                                        <img src="https://via.placeholder.com/60x60/008080/ffffff?text=EW" alt="Dr. Emily White" class="rounded-circle me-3" width="60" height="60">
+                                        <div>
+                                            <h6 class="mb-1">Dr. Emily White</h6>
+                                            <small class="text-muted">Cardiologist</small>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Appointment Details -->
+                                    <div class="appointment-details">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span><i class="fas fa-calendar me-2"></i>Date:</span>
+                                            <span>Dec 25, 2024</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span><i class="fas fa-clock me-2"></i>Time:</span>
+                                            <span>2:00 PM - 2:30 PM</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span><i class="fas fa-video me-2"></i>Type:</span>
+                                            <span>Video Consultation</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-3">
+                                            <span><i class="fas fa-clock me-2"></i>Duration:</span>
+                                            <span>30 minutes</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <hr>
+                                    
+                                    <!-- Pricing -->
+                                    <div class="pricing-details">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Consultation Fee:</span>
+                                            <span>$75.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Platform Fee:</span>
+                                            <span>$5.00</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2 text-success">
+                                            <span>First-time Discount:</span>
+                                            <span>-$10.00</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between fw-bold fs-5">
+                                            <span>Total:</span>
+                                            <span class="text-primary">$70.00</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Security Info -->
+                                    <div class="security-info mt-4">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="fas fa-shield-alt text-success me-2"></i>
+                                            <small>256-bit SSL encryption</small>
+                                        </div>
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="fas fa-lock text-success me-2"></i>
+                                            <small>Secure payment processing</small>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-undo text-success me-2"></i>
+                                            <small>Full refund if cancelled 24h before</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Payment Button -->
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-primary btn-lg w-100" id="payNowBtn">
+                                    <i class="fas fa-credit-card me-2"></i>Pay Now - $70.00
+                                </button>
+                                <div class="text-center mt-3">
+                                    <small class="text-muted">
+                                        By proceeding, you agree to our 
+                                        <a href="#" class="text-primary">Terms of Service</a> and 
+                                        <a href="#" class="text-primary">Refund Policy</a>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://phyzioline.vercel.app/assets/images/medical-icons-white.svg" alt="Ask Your Doctor" class="me-2" style="height: 40px;">
+                            
+                        </div>
+                        <p class="text-light">Your complete medical platform for healthcare services, career opportunities, and medical products.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="doctors.html" class="text-light text-decoration-none">Ask Your Doctor</a></li>
+                        <li><a href="jobs.html" class="text-light text-decoration-none">Find Jobs</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none">Courses</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Help Center</a></li>
+                        <li><a href="order-tracking.html" class="text-light text-decoration-none">Track Order</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact Support</a></li>
+                        <li><a href="faq.html" class="text-light text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Account</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="profile.html" class="text-light text-decoration-none">My Account</a></li>
+                        <li><a href="order-tracking.html" class="text-light text-decoration-none">Order History</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Shop</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white mb-3">Connect With Us</h6>
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="text-light mb-0">
+                        <i class="fas fa-envelope me-2"></i>
+                        support@askyourdoctor.com
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-4 border-secondary">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2024 Ask Your Doctor. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light mb-0">Made with <i class="fas fa-heart text-danger"></i> for healthcare</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/fixed_header.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Payment method selection
+            $('input[name="paymentMethod"]').on('change', function() {
+                const method = $(this).val();
+                
+                // Hide all forms
+                $('#creditCardForm, #paypalForm, #insuranceForm').hide();
+                
+                // Show selected form
+                if (method === 'credit') {
+                    $('#creditCardForm').show();
+                } else if (method === 'paypal') {
+                    $('#paypalForm').show();
+                } else if (method === 'insurance') {
+                    $('#insuranceForm').show();
+                }
+            });
+            
+            // Billing address toggle
+            $('#sameAsProfile').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $('#billingAddress').hide();
+                } else {
+                    $('#billingAddress').show();
+                }
+            });
+            
+            // Card number formatting
+            $('#cardNumber').on('input', function() {
+                let value = $(this).val().replace(/\s/g, '').replace(/[^0-9]/gi, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                $(this).val(formattedValue);
+            });
+            
+            // Expiry date formatting
+            $('#expiryDate').on('input', function() {
+                let value = $(this).val().replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                $(this).val(value);
+            });
+            
+            // CVV validation
+            $('#cvv').on('input', function() {
+                let value = $(this).val().replace(/[^0-9]/gi, '');
+                $(this).val(value);
+            });
+            
+            // Payment processing
+            $('#payNowBtn').on('click', function() {
+                const paymentMethod = $('input[name="paymentMethod"]:checked').val();
+                
+                if (paymentMethod === 'credit') {
+                    // Validate credit card form
+                    const cardNumber = $('#cardNumber').val().replace(/\s/g, '');
+                    const expiryDate = $('#expiryDate').val();
+                    const cvv = $('#cvv').val();
+                    const cardName = $('#cardName').val();
+                    
+                    if (!cardNumber || cardNumber.length < 16) {
+                        alert('Please enter a valid card number');
+                        return;
+                    }
+                    
+                    if (!expiryDate || expiryDate.length < 5) {
+                        alert('Please enter a valid expiry date');
+                        return;
+                    }
+                    
+                    if (!cvv || cvv.length < 3) {
+                        alert('Please enter a valid CVV');
+                        return;
+                    }
+                    
+                    if (!cardName.trim()) {
+                        alert('Please enter the cardholder name');
+                        return;
+                    }
+                }
+                
+                // Show processing state
+                $(this).prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-2"></i>Processing...');
+                
+                // Simulate payment processing
+                setTimeout(function() {
+                    // Show success message
+                    const successHtml = `
+                        <div class="alert alert-success text-center">
+                            <i class="fas fa-check-circle fs-1 text-success mb-3"></i>
+                            <h4>Payment Successful!</h4>
+                            <p>Your appointment has been confirmed. You will receive a confirmation email shortly.</p>
+                            <a href="index.html" class="btn btn-primary">Return to Home</a>
+                        </div>
+                    `;
+                    
+                    $('.container .row').html('<div class="col-12">' + successHtml + '</div>');
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/website/payment.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:52 GMT -->
+</html>
+

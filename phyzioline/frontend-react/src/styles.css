@@ -32,3 +32,54 @@ h2{ font-size:1.25rem }
 .pill{ display:inline-block; padding:6px 10px; background:var(--phyzioline-accent); color:white; border-radius:999px; font-size:12px }
 
 .muted{ color:#6b7280 }
+
+/* --- Extracted from phyzioline.vercel.app/assets/css/style.css (trimmed) --- */
+:root {
+    --primary-color: #008080;
+    --primary-dark: #006666;
+    --primary-light: #00a0a0;
+    --secondary-color: #f8f9fa;
+    --success-color: #28a745;
+    --info-color: #17a2b8;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --dark-color: #343a40;
+    --light-color: #f8f9fa;
+    --white: #ffffff;
+    --gray-100: #f8f9fa;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --font-family: 'Inter', sans-serif;
+    --border-radius: 0.5rem;
+    --box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --transition: all 0.3s ease;
+}
+
+/* Custom overrides & utilities (trimmed extract) */
+.btn-primary { background-color: var(--primary-color); border-color: var(--primary-color); color: var(--white); }
+.btn-primary:hover { background-color: var(--primary-dark); }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{ background-color: #008080 !important; color: var(--white) !important; }
+.card-body:hover{ background-color: #F0F2F3; padding: 13px; box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); border-radius: 0.5rem; }
+.hero-section { background: linear-gradient(135deg, var(--gray-100) 0%, var(--white) 100%); display:flex; align-items:center }
+.footer { background-color: teal !important; padding: 3rem 0 1rem; }
+
+/* --- Tailwind/Tokens extracted from phyzioline-ui/styles/globals.css (trimmed) --- */
+:root {
+  --primary: #008080;
+  --primary-dark: #006666;
+  --primary-light: #00a0a0;
+}
+body { color: #495057; line-height: 1.6; }
+.card-hover:hover { transform: translateY(-10px); box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175); }
+.nav-link { position: relative; }
+.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 50%; background-color: #008080; transform: translateX(-50%); transition: all 0.3s ease; }
+.nav-link:hover::after { width: 80%; }
+
+/* End of extracted styles */

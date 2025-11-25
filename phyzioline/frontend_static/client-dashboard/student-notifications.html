@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Student Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    
+    <style>
+        .dashboard-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-brand {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .sidebar-nav .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .sidebar-nav .nav-link:hover,
+        .sidebar-nav .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .notification-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #008080;
+            transition: transform 0.3s ease;
+        }
+        
+        .notification-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .notification-card.unread {
+            border-left-color: #dc3545;
+            background: #fff8f8;
+        }
+        
+        .notification-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 15px;
+        }
+        
+        .sidebar-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .dashboard-sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .dashboard-content {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #008080;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+        }
+        
+        .notification-time {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .notification-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle btn" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="d-flex align-items-center text-white">
+                <img src="https://phyzioline.vercel.app/assets/images/medical-icons-white.svg" alt="Logo"> 
+            </div>
+            <small class="text-white-50">Client Portal</small>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-appointments.html">
+                        <i class="fas fa-calendar-check"></i>
+                        My Appointments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-medical-records.html">
+                        <i class="fas fa-file-medical"></i>
+                        Medical Records
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-courses.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        My Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-payments.html">
+                        <i class="fas fa-credit-card"></i>
+                        Payments & Billing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-profile.html">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="student-notifications.html">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                        <span class="badge bg-danger ms-2">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#settingsMenu" aria-expanded="false" aria-controls="settingsMenu">
+                        <i class="fas fa-cog"></i>
+                        Dashboards
+                        <i class="fas fa-chevron-down float-end"></i>
+                    </a>
+                    <div class="collapse" id="settingsMenu">
+                        <ul class="nav flex-column ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/doctor-dashboard/doctor-dashboard.html">doctor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/vendor-dashboard/vendor-dashboard.html">Vendor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/company-dashboard/company-dashboard.html">Company Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>  
+                <li class="nav-item mt-4">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i>
+                        Back to Website
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="dashboard-content">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">Notifications</h2>
+                <p class="text-muted mb-0">Stay updated with your health and learning activities</p>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary">
+                    <i class="fas fa-filter me-2"></i>Filter
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-check-double me-2"></i>Mark All Read
+                </button>
+            </div>
+        </div>
+
+        <!-- Notification Tabs -->
+        <ul class="nav nav-pills mb-4" id="notificationTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#all-notifications">
+                    All <span class="badge bg-primary ms-1">8</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#unread-notifications">
+                    Unread <span class="badge bg-danger ms-1">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#appointments-notifications">
+                    Appointments <span class="badge bg-success ms-1">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#courses-notifications">
+                    Courses <span class="badge bg-info ms-1">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#system-notifications">
+                    System <span class="badge bg-warning ms-1">2</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- All Notifications -->
+            <div class="tab-pane fade show active" id="all-notifications">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Appointment Reminder -->
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-primary bg-opacity-10">
+                                    <i class="fas fa-calendar-check text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Upcoming Appointment Reminder</h6>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-danger notification-badge">New</span>
+                                            <span class="notification-time">30 minutes ago</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-2">You have an appointment with Dr. Emily White tomorrow at 2:00 PM for cardiology consultation.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-primary">
+                                            <i class="fas fa-video me-1"></i>Join Call
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-calendar me-1"></i>Add to Calendar
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-times me-1"></i>Dismiss
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Assignment Due -->
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-warning bg-opacity-10">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Assignment Due Tomorrow</h6>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-danger notification-badge">New</span>
+                                            <span class="notification-time">2 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-2">Your Cardiovascular System Quiz for Human Anatomy & Physiology is due tomorrow at 11:59 PM.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-warning">
+                                            <i class="fas fa-play me-1"></i>Start Quiz
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-book me-1"></i>Study Materials
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course Progress -->
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-success bg-opacity-10">
+                                    <i class="fas fa-graduation-cap text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Course Progress Update</h6>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge bg-danger notification-badge">New</span>
+                                            <span class="notification-time">4 hours ago</span>
+                                        </div>
+                                    </div>
+                                    <p class="mb-2">Congratulations! You've completed 85% of Human Anatomy & Physiology. Only 2 modules remaining.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-success">
+                                            <i class="fas fa-play me-1"></i>Continue Learning
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-chart-line me-1"></i>View Progress
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Confirmation -->
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-success bg-opacity-10">
+                                    <i class="fas fa-check-circle text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Payment Confirmed</h6>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                    <p class="mb-2">Your payment of $75.00 for Dr. Emily White's consultation has been processed successfully.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-receipt me-1"></i>View Receipt
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="fas fa-download me-1"></i>Download
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- New Course Available -->
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-info bg-opacity-10">
+                                    <i class="fas fa-book text-info"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">New Course Available</h6>
+                                        <span class="notification-time">2 days ago</span>
+                                    </div>
+                                    <p class="mb-2">A new course "Advanced Pharmacology" is now available. Perfect for your pre-med studies!</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-info">
+                                            <i class="fas fa-eye me-1"></i>View Course
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-plus me-1"></i>Enroll Now
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grade Posted -->
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-success bg-opacity-10">
+                                    <i class="fas fa-star text-success"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Grade Posted</h6>
+                                        <span class="notification-time">3 days ago</span>
+                                    </div>
+                                    <p class="mb-2">Your grade for Medical Terminology Essay has been posted: A- (92%). Great work!</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i>View Feedback
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-certificate me-1"></i>View Certificate
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- System Maintenance -->
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-warning bg-opacity-10">
+                                    <i class="fas fa-tools text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Scheduled Maintenance</h6>
+                                        <span class="notification-time">1 week ago</span>
+                                    </div>
+                                    <p class="mb-2">System maintenance is scheduled for Dec 30, 2024 from 2:00 AM to 4:00 AM EST. Services may be temporarily unavailable.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-info-circle me-1"></i>Learn More
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Welcome Message -->
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-primary bg-opacity-10">
+                                    <i class="fas fa-hand-wave text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Welcome to Ask Your Doctor!</h6>
+                                        <span class="notification-time">2 months ago</span>
+                                    </div>
+                                    <p class="mb-2">Welcome to our platform! We're excited to support your medical education journey. Don't hesitate to reach out if you need help.</p>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-question-circle me-1"></i>Get Help
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-info">
+                                            <i class="fas fa-play me-1"></i>Take Tour
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unread Notifications -->
+            <div class="tab-pane fade" id="unread-notifications">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-primary bg-opacity-10">
+                                    <i class="fas fa-calendar-check text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Upcoming Appointment Reminder</h6>
+                                        <span class="notification-time">30 minutes ago</span>
+                                    </div>
+                                    <p class="mb-2">You have an appointment with Dr. Emily White tomorrow at 2:00 PM for cardiology consultation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More unread notifications would be here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Notifications -->
+            <div class="tab-pane fade" id="appointments-notifications">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-primary bg-opacity-10">
+                                    <i class="fas fa-calendar-check text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Upcoming Appointment Reminder</h6>
+                                        <span class="notification-time">30 minutes ago</span>
+                                    </div>
+                                    <p class="mb-2">You have an appointment with Dr. Emily White tomorrow at 2:00 PM for cardiology consultation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More appointment notifications would be here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Notifications -->
+            <div class="tab-pane fade" id="courses-notifications">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="notification-card unread">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-warning bg-opacity-10">
+                                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Assignment Due Tomorrow</h6>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                    <p class="mb-2">Your Cardiovascular System Quiz for Human Anatomy & Physiology is due tomorrow at 11:59 PM.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More course notifications would be here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Notifications -->
+            <div class="tab-pane fade" id="system-notifications">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="notification-card">
+                            <div class="d-flex align-items-start">
+                                <div class="notification-icon bg-warning bg-opacity-10">
+                                    <i class="fas fa-tools text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start mb-2">
+                                        <h6 class="mb-0">Scheduled Maintenance</h6>
+                                        <span class="notification-time">1 week ago</span>
+                                    </div>
+                                    <p class="mb-2">System maintenance is scheduled for Dec 30, 2024 from 2:00 AM to 4:00 AM EST.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More system notifications would be here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Sidebar toggle for mobile
+            $('#sidebarToggle').on('click', function() {
+                $('#sidebar').toggleClass('show');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            $(document).on('click', function(e) {
+                if ($(window).width() <= 768) {
+                    if (!$(e.target).closest('#sidebar, #sidebarToggle').length) {
+                        $('#sidebar').removeClass('show');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-notifications.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+</html>
+

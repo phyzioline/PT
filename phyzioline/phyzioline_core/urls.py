@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from django.views.static import serve
+from .views import serve_frontend
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -26,7 +28,8 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # Marketing / core website (fast launch using Django templates)
-    path('', TemplateView.as_view(template_name='marketing/index.html'), name='home'),
+    path('assets/<path:path>', serve, {'document_root': settings.BASE_DIR / 'frontend_static/assets'}),
+    path('', serve_frontend, name='home'),
     path('admin/', admin.site.urls),
     # JWT Auth (Simple JWT)
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -50,6 +53,9 @@ urlpatterns = [
     path('api/v1/equivalency/', include('equivalency.urls')),
     path('api/v1/global-stats/', include('global_stats.urls')),
     path('api/v1/payments/', include('payments.urls')),
+    
+    # Catch-all for other static pages
+    path('<path:path>', serve_frontend, name='frontend'),
 ]
 
 # إضافة Media files في وضع التطوير

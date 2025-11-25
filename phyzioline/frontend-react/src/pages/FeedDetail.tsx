@@ -6,7 +6,7 @@ export default function FeedDetail(){
   const { id } = useParams()
   const [item, setItem] = useState<any>(null)
   useEffect(()=>{
-    if (id) api.get(`/content/modules/feed/${id}/`).then(r=> setItem(r.data)).catch(()=>{})
+    if (id) api.get(`/feed/posts/${id}/`).then(r=> setItem(r.data)).catch(()=>{})
   },[id])
 
   if (!item) return <p>جاري التحميل...</p>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/website/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - Ask Your Doctor</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+     <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container">
+            <a class="d-flex align-items-center" href="index.html">
+                <img src="https://phyzioline.vercel.app/assets/images/medical-icons.svg" class="logo-w"> 
+                
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="doctors.html">Ask Your Doctor</a></li>
+                            <li><a class="dropdown-item" href="jobs.html">Find Jobs</a></li>
+                            <li><a class="dropdown-item" href="courses.html">Courses</a></li>
+                           
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-primary me-2" onclick="window.location.href='shopping-cart.html'">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="badge bg-primary" id="cartCount">0</span>
+                    </button>
+                    <button class="btn btn-outline-primary me-2" onclick="window.location.href='notification.html'">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                     <div class="dropdown">
+                        
+                        <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item active" href="../client-dashboard/student-dashboard.html"><i class="fas fa-user me-2"></i>My Profile</a></li>
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="login.html"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header bg-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Frequently Asked Questions</h1>
+                    <p class="lead" style="color:white">Find answers to common questions about our platform and services</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Content -->
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <!-- FAQ Categories -->
+                    <div class="mb-5">
+                        <ul class="nav nav-pills justify-content-center" id="faqTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="general-tab" data-bs-toggle="pill" data-bs-target="#general" type="button" role="tab">
+                                    <i class="fas fa-info-circle me-2"></i>General
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="doctors-tab" data-bs-toggle="pill" data-bs-target="#doctors" type="button" role="tab">
+                                    <i class="fas fa-stethoscope me-2"></i>Ask Your Doctor
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="jobs-tab" data-bs-toggle="pill" data-bs-target="#jobs" type="button" role="tab">
+                                    <i class="fas fa-briefcase me-2"></i>Jobs
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="courses-tab" data-bs-toggle="pill" data-bs-target="#courses" type="button" role="tab">
+                                    <i class="fas fa-graduation-cap me-2"></i>Courses
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="products-tab" data-bs-toggle="pill" data-bs-target="#products" type="button" role="tab">
+                                    <i class="fas fa-shopping-cart me-2"></i>Products
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- FAQ Content -->
+                    <div class="tab-content" id="faqTabContent">
+                        <!-- General FAQ -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel">
+                            <div class="accordion" id="generalAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#general1">
+                                            What is Ask Your Doctor platform?
+                                        </button>
+                                    </h2>
+                                    <div id="general1" class="accordion-collapse collapse show" data-bs-parent="#generalAccordion">
+                                        <div class="accordion-body">
+                                            Ask Your Doctor is a comprehensive medical platform that connects patients with qualified healthcare professionals, offers job opportunities in the medical field, provides educational courses, and sells medical products. Our platform serves as a one-stop solution for all your healthcare needs.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general2">
+                                            How do I create an account?
+                                        </button>
+                                    </h2>
+                                    <div id="general2" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                                        <div class="accordion-body">
+                                            To create an account, click on the "Login" button in the top right corner, then select "Sign Up" or "Register". Choose your account type (Patient, Doctor, Student, Vendor, or Company) and fill in the required information. You'll receive an email verification link to activate your account.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general3">
+                                            Is my personal information secure?
+                                        </button>
+                                    </h2>
+                                    <div id="general3" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                                        <div class="accordion-body">
+                                            Yes, we take your privacy and security very seriously. Our platform is HIPAA-compliant and uses advanced encryption to protect your personal and medical information. We never share your data with third parties without your explicit consent.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#general4">
+                                            What payment methods do you accept?
+                                        </button>
+                                    </h2>
+                                    <div id="general4" class="accordion-collapse collapse" data-bs-parent="#generalAccordion">
+                                        <div class="accordion-body">
+                                            We accept all major credit cards (Visa, MasterCard, American Express), PayPal, bank transfers, and mobile payment solutions. All transactions are processed securely through encrypted payment gateways.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Doctors FAQ -->
+                        <div class="tab-pane fade" id="doctors" role="tabpanel">
+                            <div class="accordion" id="doctorsAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#doctors1">
+                                            How do I book an appointment with a doctor?
+                                        </button>
+                                    </h2>
+                                    <div id="doctors1" class="accordion-collapse collapse show" data-bs-parent="#doctorsAccordion">
+                                        <div class="accordion-body">
+                                            To book an appointment, go to the "Ask Your Doctor" section, search for doctors by specialty or location, select your preferred doctor, choose an available time slot, and confirm your booking. You'll receive a confirmation email with appointment details.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#doctors2">
+                                            Can I cancel or reschedule my appointment?
+                                        </button>
+                                    </h2>
+                                    <div id="doctors2" class="accordion-collapse collapse" data-bs-parent="#doctorsAccordion">
+                                        <div class="accordion-body">
+                                            Yes, you can cancel or reschedule your appointment up to 24 hours before the scheduled time. Go to your dashboard, find the appointment, and select the cancel or reschedule option. Please note that cancellations made less than 24 hours in advance may incur a fee.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#doctors3">
+                                            How do I track my doctor's location?
+                                        </button>
+                                    </h2>
+                                    <div id="doctors3" class="accordion-collapse collapse" data-bs-parent="#doctorsAccordion">
+                                        <div class="accordion-body">
+                                            Once your appointment is confirmed and the doctor is on their way, you'll receive a notification with a tracking link. You can view the doctor's real-time location and estimated arrival time on the interactive map.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#doctors4">
+                                            How do I rate and review a doctor?
+                                        </button>
+                                    </h2>
+                                    <div id="doctors4" class="accordion-collapse collapse" data-bs-parent="#doctorsAccordion">
+                                        <div class="accordion-body">
+                                            After your appointment is completed, you'll receive an email invitation to rate and review the doctor. You can also access the rating form through your appointment history in your dashboard. Your feedback helps other patients make informed decisions.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Jobs FAQ -->
+                        <div class="tab-pane fade" id="jobs" role="tabpanel">
+                            <div class="accordion" id="jobsAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#jobs1">
+                                            How do I search for jobs?
+                                        </button>
+                                    </h2>
+                                    <div id="jobs1" class="accordion-collapse collapse show" data-bs-parent="#jobsAccordion">
+                                        <div class="accordion-body">
+                                            Visit the "Find Jobs" section and use our search filters to find positions by specialty, location, salary range, and employment type. You can also browse featured jobs or set up job alerts to receive notifications about new opportunities.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jobs2">
+                                            How do I apply for a job?
+                                        </button>
+                                    </h2>
+                                    <div id="jobs2" class="accordion-collapse collapse" data-bs-parent="#jobsAccordion">
+                                        <div class="accordion-body">
+                                            Click on the job listing you're interested in, review the requirements, and click "Apply Now". Fill out the application form, upload your resume and any required documents, then submit your application. You can track your application status in your dashboard.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#jobs3">
+                                            Can I save jobs for later?
+                                        </button>
+                                    </h2>
+                                    <div id="jobs3" class="accordion-collapse collapse" data-bs-parent="#jobsAccordion">
+                                        <div class="accordion-body">
+                                            Yes, you can save interesting job listings by clicking the bookmark icon on any job posting. Saved jobs can be accessed from your dashboard under "Saved Jobs" section.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Courses FAQ -->
+                        <div class="tab-pane fade" id="courses" role="tabpanel">
+                            <div class="accordion" id="coursesAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#courses1">
+                                            How do I enroll in a course?
+                                        </button>
+                                    </h2>
+                                    <div id="courses1" class="accordion-collapse collapse show" data-bs-parent="#coursesAccordion">
+                                        <div class="accordion-body">
+                                            Browse our course catalog, select the course you're interested in, review the curriculum and requirements, then click "Enroll Now". Complete the payment process to gain access to course materials and start learning immediately.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courses2">
+                                            Do I get a certificate upon completion?
+                                        </button>
+                                    </h2>
+                                    <div id="courses2" class="accordion-collapse collapse" data-bs-parent="#coursesAccordion">
+                                        <div class="accordion-body">
+                                            Yes, upon successful completion of a course and passing all assessments, you'll receive a digital certificate that you can download and share on professional networks like LinkedIn.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#courses3">
+                                            Can I access course materials after completion?
+                                        </button>
+                                    </h2>
+                                    <div id="courses3" class="accordion-collapse collapse" data-bs-parent="#coursesAccordion">
+                                        <div class="accordion-body">
+                                            Yes, you'll have lifetime access to course materials, including videos, documents, and resources. You can revisit the content anytime through your student dashboard.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Products FAQ -->
+                        <div class="tab-pane fade" id="products" role="tabpanel">
+                            <div class="accordion" id="productsAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#products1">
+                                            How do I purchase medical products?
+                                        </button>
+                                    </h2>
+                                    <div id="products1" class="accordion-collapse collapse show" data-bs-parent="#productsAccordion">
+                                        <div class="accordion-body">
+                                            Browse our product catalog, add items to your cart, review your order, provide shipping information, and complete the payment process. You'll receive order confirmation and tracking information via email.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products2">
+                                            What is your return policy?
+                                        </button>
+                                    </h2>
+                                    <div id="products2" class="accordion-collapse collapse" data-bs-parent="#productsAccordion">
+                                        <div class="accordion-body">
+                                            We offer a 30-day return policy for most products. Items must be in original condition and packaging. Medical devices and consumables may have different return policies due to health and safety regulations.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#products3">
+                                            How long does shipping take?
+                                        </button>
+                                    </h2>
+                                    <div id="products3" class="accordion-collapse collapse" data-bs-parent="#productsAccordion">
+                                        <div class="accordion-body">
+                                            Standard shipping takes 3-5 business days, while express shipping takes 1-2 business days. Shipping times may vary based on your location and product availability. You can track your order status in real-time.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <!-- Contact Support -->
+                    <div class="text-center mt-5">
+                        <div class="card bg-light border-0">
+                            <div class="card-body p-4">
+                                <h5 class="card-title mb-3">Still have questions?</h5>
+                                <p class="card-text mb-4" style="color: black;">Can't find the answer you're looking for? Our support team is here to help.</p>
+                                <a href="contact.html" class="btn btn-primary">Contact Support</a>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-brand mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://phyzioline.vercel.app/assets/images/medical-icons-white.svg" alt="Ask Your Doctor" class="me-2" style="height: 40px;">
+                            
+                        </div>
+                        <p class="text-light">Your complete medical platform for healthcare services, career opportunities, and medical products.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="doctors.html" class="text-light text-decoration-none">Ask Your Doctor</a></li>
+                        <li><a href="jobs.html" class="text-light text-decoration-none">Find Jobs</a></li>
+                        <li><a href="courses.html" class="text-light text-decoration-none">Courses</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="contact.html" class="text-light text-decoration-none">Help Center</a></li>
+                        <li><a href="order-tracking.html" class="text-light text-decoration-none">Track Order</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact Support</a></li>
+                        <li><a href="faq.html" class="text-light text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="text-white mb-3">Account</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="profile.html" class="text-light text-decoration-none">My Account</a></li>
+                        <li><a href="order-tracking.html" class="text-light text-decoration-none">Order History</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Shop</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="text-white mb-3">Connect With Us</h6>
+                    <div class="social-links mb-3">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="text-light mb-0">
+                        <i class="fas fa-envelope me-2"></i>
+                        support@askyourdoctor.com
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-4 border-secondary">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-light mb-0">&copy; 2024 Ask Your Doctor. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-light mb-0">Made with <i class="fas fa-heart text-danger"></i> for healthcare</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/fixed_header.js"></script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/website/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:47 GMT -->
+</html>
+
