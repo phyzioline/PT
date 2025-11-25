@@ -1,0 +1,20 @@
+[
+  {
+    "icon": "fas fa-stethoscope",
+    "title": "Ask Your Doctor",
+    "text": "Connect with qualified medical professionals for consultations and health advice.",
+    "link": "/doctors"
+  },
+  {
+    "icon": "fas fa-briefcase",
+    "title": "Find Jobs",
+    "text": "Discover career opportunities in healthcare and medical fields.",
+    "link": "/jobs"
+  },
+  {
+    "icon": "fas fa-graduation-cap",
+    "title": "Medical Courses",
+    "text": "Enhance your skills with professional medical education and training.",
+    "link": "/courses"
+  }
+]

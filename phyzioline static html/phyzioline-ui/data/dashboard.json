@@ -1,0 +1,178 @@
+{
+  "overview": {
+    "title": "Welcome Back!",
+    "stats": [
+      {
+        "label": "Total Appointments",
+        "value": "12",
+        "icon": "fas fa-calendar-check",
+        "color": "primary"
+      },
+      {
+        "label": "Active Courses",
+        "value": "3",
+        "icon": "fas fa-book",
+        "color": "success"
+      },
+      {
+        "label": "Messages",
+        "value": "8",
+        "icon": "fas fa-envelope",
+        "color": "info"
+      },
+      {
+        "label": "Account Balance",
+        "value": "$250",
+        "icon": "fas fa-wallet",
+        "color": "warning"
+      }
+    ],
+    "recentAppointments": [
+      {
+        "id": 1,
+        "doctorName": "Dr. Sarah Johnson",
+        "specialty": "Cardiologist",
+        "date": "Nov 28, 2025",
+        "time": "2:30 PM",
+        "status": "upcoming"
+      },
+      {
+        "id": 2,
+        "doctorName": "Dr. Michael Chen",
+        "specialty": "General Practice",
+        "date": "Nov 25, 2025",
+        "time": "10:00 AM",
+        "status": "completed"
+      },
+      {
+        "id": 3,
+        "doctorName": "Dr. Emily Rodriguez",
+        "specialty": "Pediatrician",
+        "date": "Nov 20, 2025",
+        "time": "3:00 PM",
+        "status": "completed"
+      }
+    ]
+  },
+  "appointments": {
+    "title": "My Appointments",
+    "appointments": [
+      {
+        "id": 1,
+        "doctorName": "Dr. Sarah Johnson",
+        "specialty": "Cardiologist",
+        "date": "Nov 28, 2025",
+        "time": "2:30 PM",
+        "status": "upcoming",
+        "reason": "Heart Checkup",
+        "location": "Main Hospital - Room 305"
+      },
+      {
+        "id": 2,
+        "doctorName": "Dr. Michael Chen",
+        "specialty": "General Practice",
+        "date": "Nov 25, 2025",
+        "time": "10:00 AM",
+        "status": "completed",
+        "reason": "Annual Checkup",
+        "location": "Medical Center - Room 102"
+      },
+      {
+        "id": 3,
+        "doctorName": "Dr. Emily Rodriguez",
+        "specialty": "Pediatrician",
+        "date": "Nov 20, 2025",
+        "time": "3:00 PM",
+        "status": "completed",
+        "reason": "Vaccination",
+        "location": "Family Health Clinic - Room 5"
+      },
+      {
+        "id": 4,
+        "doctorName": "Dr. James Wilson",
+        "specialty": "Orthopedist",
+        "date": "Dec 5, 2025",
+        "time": "1:00 PM",
+        "status": "upcoming",
+        "reason": "Knee Pain Consultation",
+        "location": "Sports Medicine Center - Room 201"
+      }
+    ]
+  },
+  "courses": {
+    "title": "My Courses",
+    "courses": [
+      {
+        "id": 1,
+        "title": "Fundamentals of Cardiology",
+        "instructor": "Dr. Sarah Johnson",
+        "progress": 75,
+        "status": "active",
+        "modules": 8,
+        "completedModules": 6,
+        "image": "course-cardiology"
+      },
+      {
+        "id": 2,
+        "title": "Advanced Nursing Care",
+        "instructor": "Dr. Lisa Anderson",
+        "progress": 45,
+        "status": "active",
+        "modules": 12,
+        "completedModules": 5,
+        "image": "course-nursing"
+      },
+      {
+        "id": 3,
+        "title": "Pediatrics Essentials",
+        "instructor": "Dr. Emily Rodriguez",
+        "progress": 100,
+        "status": "completed",
+        "modules": 10,
+        "completedModules": 10,
+        "image": "course-pediatrics"
+      },
+      {
+        "id": 4,
+        "title": "Surgical Procedures",
+        "instructor": "Dr. Robert Martinez",
+        "progress": 0,
+        "status": "enrolled",
+        "modules": 15,
+        "completedModules": 0,
+        "image": "course-surgery"
+      }
+    ]
+  },
+  "profile": {
+    "title": "My Profile",
+    "user": {
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "phone": "+1 (555) 123-4567",
+      "dateOfBirth": "1990-05-15",
+      "gender": "Male",
+      "userType": "patient",
+      "avatar": "https://ui-avatars.com/api/?name=John+Smith&background=008080&color=fff"
+    },
+    "address": {
+      "street": "123 Medical Street",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "country": "United States"
+    },
+    "medicalInfo": {
+      "bloodType": "O+",
+      "allergies": "Penicillin, Nuts",
+      "conditions": "Hypertension",
+      "medications": "Lisinopril 10mg daily"
+    },
+    "preferences": {
+      "emailNotifications": true,
+      "smsNotifications": false,
+      "appointmentReminders": true,
+      "courseUpdates": true
+    }
+  }
+}

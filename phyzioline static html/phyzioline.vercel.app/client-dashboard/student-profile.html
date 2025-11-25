@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Student Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    
+    <style>
+        .dashboard-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-brand {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .sidebar-nav .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .sidebar-nav .nav-link:hover,
+        .sidebar-nav .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #008080, #006666);
+            color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .avatar-upload {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: #008080;
+            border: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar-upload:hover {
+            background: #006666;
+        }
+        
+        .sidebar-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .dashboard-sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .dashboard-content {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #008080;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+        }
+        
+        .profile-section {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .activity-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #008080;
+        }
+        
+        .achievement-badge {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle btn" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="d-flex align-items-center text-white">
+               <img src="https://phyzioline.vercel.app/assets/images/medical-icons-white.svg" alt="Logo"> 
+            </div>
+            <small class="text-white-50">Client Portal</small>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-appointments.html">
+                        <i class="fas fa-calendar-check"></i>
+                        My Appointments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-medical-records.html">
+                        <i class="fas fa-file-medical"></i>
+                        Medical Records
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-courses.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        My Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-payments.html">
+                        <i class="fas fa-credit-card"></i>
+                        Payments & Billing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="student-profile.html">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-notifications.html">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                        <span class="badge bg-danger ms-2">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#settingsMenu" aria-expanded="false" aria-controls="settingsMenu">
+                        <i class="fas fa-cog"></i>
+                        Dashboards
+                        <i class="fas fa-chevron-down float-end"></i>
+                    </a>
+                    <div class="collapse" id="settingsMenu">
+                        <ul class="nav flex-column ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/doctor-dashboard/doctor-dashboard.html">doctor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/vendor-dashboard/vendor-dashboard.html">Vendor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/company-dashboard/company-dashboard.html">Company Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>  
+                <li class="nav-item mt-4">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i>
+                        Back to Website
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="dashboard-content">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                    <div class="profile-avatar mx-auto">
+                        AJ
+                        <div class="avatar-upload">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <h2 class="fw-bold mb-2">Alex Johnson</h2>
+                    <p class="mb-2 opacity-75">Pre-Medical Student</p>
+                    <p class="mb-3 opacity-75">Member since October 2024</p>
+                    <div class="d-flex gap-3">
+                        <div class="text-center">
+                            <div class="fw-bold fs-5">5</div>
+                            <small class="opacity-75">Active Courses</small>
+                        </div>
+                        <div class="text-center">
+                            <div class="fw-bold fs-5">12</div>
+                            <small class="opacity-75">Consultations</small>
+                        </div>
+                        <div class="text-center">
+                            <div class="fw-bold fs-5">3</div>
+                            <small class="opacity-75">Certificates</small>
+                        </div>
+                        <div class="text-center">
+                            <div class="fw-bold fs-5">75%</div>
+                            <small class="opacity-75">Progress</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Tabs -->
+        <ul class="nav nav-pills mb-4" id="profileTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#personal-info">
+                    Personal Information
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#academic-info">
+                    Academic Information
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#security">
+                    Security & Privacy
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#achievements">
+                    Achievements
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#activity">
+                    Recent Activity
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Personal Information -->
+            <div class="tab-pane fade show active" id="personal-info">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Personal Information</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" class="form-control" value="Alex">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" value="Johnson">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" value="alex.johnson@email.com">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" value="(555) 123-4567">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Date of Birth</label>
+                                        <input type="date" class="form-control" value="1998-05-15">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Gender</label>
+                                        <select class="form-select">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                            <option>Prefer not to say</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" class="form-control" value="123 Main Street">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-control" value="New York">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">State</label>
+                                        <select class="form-select">
+                                            <option selected>NY</option>
+                                            <option>CA</option>
+                                            <option>TX</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">ZIP Code</label>
+                                        <input type="text" class="form-control" value="10001">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Bio</label>
+                                        <textarea class="form-control" rows="3">Pre-medical student passionate about healthcare and helping others. Currently pursuing a Bachelor's degree in Biology with plans to attend medical school.</textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Save Changes
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary ms-2">
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Emergency Contact</h5>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" value="Jane Johnson">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Relationship</label>
+                                    <select class="form-select">
+                                        <option selected>Mother</option>
+                                        <option>Father</option>
+                                        <option>Spouse</option>
+                                        <option>Sibling</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" value="(555) 987-6543">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" value="jane.johnson@email.com">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-outline-primary">
+                                    <i class="fas fa-save me-2"></i>Update Contact
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information -->
+            <div class="tab-pane fade" id="academic-info">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Academic Information</h5>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Current Institution</label>
+                                        <input type="text" class="form-control" value="New York University">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Degree Program</label>
+                                        <input type="text" class="form-control" value="Bachelor of Science in Biology">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Year of Study</label>
+                                        <select class="form-select">
+                                            <option>1st Year</option>
+                                            <option>2nd Year</option>
+                                            <option selected>3rd Year</option>
+                                            <option>4th Year</option>
+                                            <option>Graduate</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Expected Graduation</label>
+                                        <input type="month" class="form-control" value="2025-05">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">GPA</label>
+                                        <input type="number" class="form-control" value="3.8" step="0.1" min="0" max="4">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Student ID</label>
+                                        <input type="text" class="form-control" value="NYU-2021-12345">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Career Goals</label>
+                                        <textarea class="form-control" rows="3">Aspiring to become a cardiologist. Interested in research related to cardiovascular diseases and preventive medicine. Planning to apply to medical school in 2025.</textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Areas of Interest</label>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="cardiology" checked>
+                                                    <label class="form-check-label" for="cardiology">Cardiology</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="neurology">
+                                                    <label class="form-check-label" for="neurology">Neurology</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="pediatrics" checked>
+                                                    <label class="form-check-label" for="pediatrics">Pediatrics</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="surgery">
+                                                    <label class="form-check-label" for="surgery">Surgery</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="research" checked>
+                                                    <label class="form-check-label" for="research">Medical Research</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="public-health">
+                                                    <label class="form-check-label" for="public-health">Public Health</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>Save Academic Info
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Academic Progress</h5>
+                            <div class="mb-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Overall Progress</span>
+                                    <span class="fw-bold">75%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-3">Current Courses</h6>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Human Anatomy</small>
+                                        <small class="text-success">85%</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Medical Terminology</small>
+                                        <small class="text-primary">70%</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Pharmacology</small>
+                                        <small class="text-warning">60%</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <div class="d-flex justify-content-between">
+                                        <small>Clinical Skills</small>
+                                        <small class="text-info">90%</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle me-2"></i>
+                                <small>You're on track to graduate in May 2025!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security & Privacy -->
+            <div class="tab-pane fade" id="security">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Security Settings</h5>
+                            
+                            <!-- Change Password -->
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-3">Change Password</h6>
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label class="form-label">Current Password</label>
+                                            <input type="password" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">New Password</label>
+                                            <input type="password" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Confirm New Password</label>
+                                            <input type="password" class="form-control">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">
+                                        <i class="fas fa-key me-2"></i>Update Password
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <!-- Two-Factor Authentication -->
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-3">Two-Factor Authentication</h6>
+                                <div class="d-flex justify-content-between align-items-center p-3 border rounded">
+                                    <div>
+                                        <div class="fw-bold">SMS Authentication</div>
+                                        <small class="text-muted">Receive codes via text message</small>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="smsAuth">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center p-3 border rounded mt-2">
+                                    <div>
+                                        <div class="fw-bold">Email Authentication</div>
+                                        <small class="text-muted">Receive codes via email</small>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="emailAuth" checked>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Login Sessions -->
+                            <div class="mb-4">
+                                <h6 class="fw-bold mb-3">Active Sessions</h6>
+                                <div class="border rounded p-3 mb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Current Session</div>
+                                            <small class="text-muted">Chrome on Windows • New York, NY</small>
+                                        </div>
+                                        <span class="badge bg-success">Active</span>
+                                    </div>
+                                </div>
+                                <div class="border rounded p-3 mb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fw-bold">Mobile App</div>
+                                            <small class="text-muted">iPhone • Last active 2 hours ago</small>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-danger">End Session</button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-sign-out-alt me-2"></i>End All Other Sessions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Privacy Settings</h5>
+                            
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <div class="fw-bold">Profile Visibility</div>
+                                        <small class="text-muted">Who can see your profile</small>
+                                    </div>
+                                    <select class="form-select form-select-sm" style="width: auto;">
+                                        <option>Private</option>
+                                        <option selected>Doctors Only</option>
+                                        <option>Public</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="shareProgress" checked>
+                                    <label class="form-check-label" for="shareProgress">
+                                        Share academic progress with instructors
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="allowMessages" checked>
+                                    <label class="form-check-label" for="allowMessages">
+                                        Allow messages from doctors
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="shareHealth">
+                                    <label class="form-check-label" for="shareHealth">
+                                        Share health data for research
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-warning mt-3" role="alert">
+                                <i class="fas fa-shield-alt me-2"></i>
+                                <small>Your medical information is always kept confidential and secure.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="tab-pane fade" id="achievements">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Achievements & Badges</h5>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="achievement-badge">
+                                        <div class="achievement-icon bg-warning bg-opacity-10">
+                                            <i class="fas fa-graduation-cap text-warning"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">First Course</h6>
+                                        <small class="text-muted">Completed your first course</small>
+                                        <div class="mt-2">
+                                            <small class="text-success">Earned Oct 2024</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="achievement-badge">
+                                        <div class="achievement-icon bg-success bg-opacity-10">
+                                            <i class="fas fa-star text-success"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">High Achiever</h6>
+                                        <small class="text-muted">Scored 90%+ on 3 courses</small>
+                                        <div class="mt-2">
+                                            <small class="text-success">Earned Nov 2024</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="achievement-badge">
+                                        <div class="achievement-icon bg-primary bg-opacity-10">
+                                            <i class="fas fa-calendar-check text-primary"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">Consistent Learner</h6>
+                                        <small class="text-muted">Studied 30 days in a row</small>
+                                        <div class="mt-2">
+                                            <small class="text-success">Earned Dec 2024</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="achievement-badge">
+                                        <div class="achievement-icon bg-info bg-opacity-10">
+                                            <i class="fas fa-user-md text-info"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">Health Advocate</h6>
+                                        <small class="text-muted">Completed 10 consultations</small>
+                                        <div class="mt-2">
+                                            <small class="text-success">Earned Dec 2024</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="achievement-badge">
+                                        <div class="achievement-icon bg-secondary bg-opacity-10">
+                                            <i class="fas fa-book text-secondary"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">Knowledge Seeker</h6>
+                                        <small class="text-muted">Enrolled in 5+ courses</small>
+                                        <div class="mt-2">
+                                            <small class="text-muted">In Progress</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <div class="achievement-badge opacity-50">
+                                        <div class="achievement-icon bg-light">
+                                            <i class="fas fa-trophy text-muted"></i>
+                                        </div>
+                                        <h6 class="fw-bold mb-1">Course Master</h6>
+                                        <small class="text-muted">Complete 10 courses</small>
+                                        <div class="mt-2">
+                                            <small class="text-muted">3/10 completed</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Progress Stats</h5>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Courses Completed</span>
+                                    <span class="fw-bold">3</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Total Study Hours</span>
+                                    <span class="fw-bold">127</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Consultations</span>
+                                    <span class="fw-bold">12</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Certificates Earned</span>
+                                    <span class="fw-bold">3</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Average Grade</span>
+                                    <span class="fw-bold text-success">91.7%</span>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-success mt-3" role="alert">
+                                <i class="fas fa-trophy me-2"></i>
+                                <small>You're in the top 15% of students!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="tab-pane fade" id="activity">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Recent Activity</h5>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Completed Cardiovascular System Quiz</h6>
+                                        <p class="mb-1 text-muted">Human Anatomy & Physiology • Score: 95%</p>
+                                        <small class="text-muted">2 hours ago</small>
+                                    </div>
+                                    <span class="badge bg-success">Completed</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Consultation with Dr. Emily White</h6>
+                                        <p class="mb-1 text-muted">Cardiology consultation completed</p>
+                                        <small class="text-muted">1 day ago</small>
+                                    </div>
+                                    <span class="badge bg-primary">Consultation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Enrolled in Pharmacology Basics</h6>
+                                        <p class="mb-1 text-muted">Started new 12-week course</p>
+                                        <small class="text-muted">3 days ago</small>
+                                    </div>
+                                    <span class="badge bg-info">Enrollment</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Submitted Medical Terminology Essay</h6>
+                                        <p class="mb-1 text-muted">Assignment submitted for review</p>
+                                        <small class="text-muted">5 days ago</small>
+                                    </div>
+                                    <span class="badge bg-warning">Assignment</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Earned "High Achiever" Badge</h6>
+                                        <p class="mb-1 text-muted">Achieved 90%+ score on 3 courses</p>
+                                        <small class="text-muted">1 week ago</small>
+                                    </div>
+                                    <span class="badge bg-success">Achievement</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Updated Profile Information</h6>
+                                        <p class="mb-1 text-muted">Added emergency contact details</p>
+                                        <small class="text-muted">1 week ago</small>
+                                    </div>
+                                    <span class="badge bg-secondary">Profile</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-item">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <h6 class="mb-1">Completed Introduction to Biology</h6>
+                                        <p class="mb-1 text-muted">Final grade: A- (92%)</p>
+                                        <small class="text-muted">2 weeks ago</small>
+                                    </div>
+                                    <span class="badge bg-success">Course Complete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="profile-section">
+                            <h5 class="fw-bold mb-4">Activity Summary</h5>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>This Week</span>
+                                    <span class="fw-bold">12 activities</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>This Month</span>
+                                    <span class="fw-bold">47 activities</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Study Streak</span>
+                                    <span class="fw-bold text-success">15 days</span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Last Login</span>
+                                    <span class="fw-bold">Today</span>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-3" role="alert">
+                                <i class="fas fa-fire me-2"></i>
+                                <small>Keep up your study streak! You're doing great!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Sidebar toggle for mobile
+            $('#sidebarToggle').on('click', function() {
+                $('#sidebar').toggleClass('show');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            $(document).on('click', function(e) {
+                if ($(window).width() <= 768) {
+                    if (!$(e.target).closest('#sidebar, #sidebarToggle').length) {
+                        $('#sidebar').removeClass('show');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+</html>
+

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/website/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:47 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Ask Your Doctor</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8">
+                    <div class="auth-card">
+                        <div class="auth-header">
+                            <i class="fas fa-stethoscope"></i>
+                            <h2>Create Your Account</h2>
+                            <p class="text-muted">Join our medical platform and connect with healthcare professionals</p>
+                        </div>
+                        
+                        <!-- User Type Selection -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">I want to register as:</label>
+                            <div class="user-type-selector">
+                                <button type="button" class="user-type-btn active" data-type="patient">
+                                    <i class="fas fa-user"></i><br>Patient
+                                    <small>Book appointments and consult doctors</small>
+                                </button>
+                                <button type="button" class="user-type-btn" data-type="doctor">
+                                    <i class="fas fa-user-md"></i><br>Doctor
+                                    <small>Provide medical consultations</small>
+                                </button>
+                                <button type="button" class="user-type-btn" data-type="student">
+                                    <i class="fas fa-graduation-cap"></i><br>Student
+                                    <small>Access courses and job opportunities</small>
+                                </button>
+                            </div>
+                            <input type="hidden" id="userType" value="patient">
+                        </div>
+                        
+                        <!-- Registration Form -->
+                        <form id="registerForm" class="auth-form">
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h5 class="section-title">Personal Information</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" class="form-control" id="firstName" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                            <input type="text" class="form-control" id="lastName" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            <input type="date" class="form-control" id="dateOfBirth" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gender" class="form-label">Gender *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                            <select class="form-select" id="gender" required>
+                                                <option value="">Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                                <option value="prefer-not-to-say">Prefer not to say</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Information -->
+                            <div class="form-section">
+                                <h5 class="section-title">Contact Information</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <small class="form-text text-muted">This will be your login email</small>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="phone" class="form-label">Phone Number *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            <input type="tel" class="form-control" id="phone" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="country" class="form-label">Country *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                                            <select class="form-select" id="country" required>
+                                                <option value="">Select Country</option>
+                                                <option value="us">United States</option>
+                                                <option value="ca">Canada</option>
+                                                <option value="uk">United Kingdom</option>
+                                                <option value="au">Australia</option>
+                                                <option value="de">Germany</option>
+                                                <option value="fr">France</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Professional Information (for doctors) -->
+                            <div class="form-section" id="doctorFields" style="display: none;">
+                                <h5 class="section-title">Professional Information</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="licenseNumber" class="form-label">Medical License Number *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                            <input type="text" class="form-control" id="licenseNumber">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="specialty" class="form-label">Specialty *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-stethoscope"></i></span>
+                                            <select class="form-select" id="specialty">
+                                                <option value="">Select Specialty</option>
+                                                <option value="general">General Medicine</option>
+                                                <option value="cardiology">Cardiology</option>
+                                                <option value="dermatology">Dermatology</option>
+                                                <option value="neurology">Neurology</option>
+                                                <option value="pediatrics">Pediatrics</option>
+                                                <option value="psychiatry">Psychiatry</option>
+                                                <option value="orthopedics">Orthopedics</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="experience" class="form-label">Years of Experience *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                            <select class="form-select" id="experience">
+                                                <option value="">Select Experience</option>
+                                                <option value="1-2">1-2 years</option>
+                                                <option value="3-5">3-5 years</option>
+                                                <option value="6-10">6-10 years</option>
+                                                <option value="11-15">11-15 years</option>
+                                                <option value="16+">16+ years</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="hospital" class="form-label">Current Hospital/Clinic</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-hospital"></i></span>
+                                            <input type="text" class="form-control" id="hospital">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Education Information (for students) -->
+                            <div class="form-section" id="studentFields" style="display: none;">
+                                <h5 class="section-title">Education Information</h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="university" class="form-label">University/Institution *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-university"></i></span>
+                                            <input type="text" class="form-control" id="university">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="degree" class="form-label">Degree Program *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-graduation-cap"></i></span>
+                                            <select class="form-select" id="degree">
+                                                <option value="">Select Degree</option>
+                                                <option value="pre-med">Pre-Medical</option>
+                                                <option value="medical">Medical Degree (MD)</option>
+                                                <option value="nursing">Nursing</option>
+                                                <option value="pharmacy">Pharmacy</option>
+                                                <option value="dentistry">Dentistry</option>
+                                                <option value="other">Other Health Sciences</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="yearOfStudy" class="form-label">Year of Study *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                            <select class="form-select" id="yearOfStudy">
+                                                <option value="">Select Year</option>
+                                                <option value="1">1st Year</option>
+                                                <option value="2">2nd Year</option>
+                                                <option value="3">3rd Year</option>
+                                                <option value="4">4th Year</option>
+                                                <option value="5">5th Year</option>
+                                                <option value="6">6th Year</option>
+                                                <option value="graduate">Graduate</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="graduationYear" class="form-label">Expected Graduation</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-calendar-check"></i></span>
+                                            <input type="number" class="form-control" id="graduationYear" min="2024" max="2035">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Security -->
+                            <div class="form-section">
+                                <h5 class="section-title">Account Security</h5>
+                                
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control" id="password" required>
+                                        <button type="button" class="btn btn-outline-secondary password-toggle">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <small class="form-text text-muted">Password must be at least 8 characters long</small>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="confirmPassword" class="form-label">Confirm Password *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                        <input type="password" class="form-control" id="confirmPassword" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Terms and Conditions -->
+                            <div class="form-section">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label" for="agreeTerms">
+                                        I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a> *
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="agreeNewsletter">
+                                    <label class="form-check-label" for="agreeNewsletter">
+                                        I would like to receive health tips and platform updates via email
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-4" id="doctorApproval" style="display: none;">
+                                    <input class="form-check-input" type="checkbox" id="agreeDoctorTerms">
+                                    <label class="form-check-label" for="agreeDoctorTerms">
+                                        I understand that my doctor registration requires admin approval and credential verification *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 btn-lg mb-3">Create Account</button>
+                        </form>
+                        
+                        <!-- Social Registration -->
+                        <div class="text-center mb-4">
+                            <div class="position-relative">
+                                <hr>
+                                <span class="position-absolute top-50 start-50 translate-middle bg-white px-3 text-muted">Or register with</span>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-2 mb-4">
+                            <div class="col-6">
+                                <button class="btn btn-outline-secondary w-100">
+                                    <i class="fab fa-google me-2"></i>Google
+                                </button>
+                            </div>
+                            <div class="col-6">
+                                <button class="btn btn-outline-secondary w-100">
+                                    <i class="fab fa-facebook me-2"></i>Facebook
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Login Link -->
+                        <div class="text-center">
+                            <p class="mb-0">
+                                Already have an account?
+                                <a href="login.html" class="text-primary text-decoration-none">Sign in here</a>
+                            </p>
+                        </div>
+                        
+                        <!-- Back to home -->
+                        <div class="text-center mt-4">
+                            <a href="index.html" class="text-muted text-decoration-none">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../assets/js/main.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // User type selection
+            $('.user-type-btn').on('click', function() {
+                $('.user-type-btn').removeClass('active');
+                $(this).addClass('active');
+                
+                const userType = $(this).data('type');
+                $('#userType').val(userType);
+                
+                // Show/hide relevant fields
+                $('#doctorFields, #studentFields, #doctorApproval').hide();
+                $('#licenseNumber, #specialty, #experience, #university, #degree, #yearOfStudy, #agreeDoctorTerms').prop('required', false);
+                
+                if (userType === 'doctor') {
+                    $('#doctorFields, #doctorApproval').show();
+                    $('#licenseNumber, #specialty, #experience, #agreeDoctorTerms').prop('required', true);
+                } else if (userType === 'student') {
+                    $('#studentFields').show();
+                    $('#university, #degree, #yearOfStudy').prop('required', true);
+                }
+            });
+            
+            // Password toggle
+            $('.password-toggle').on('click', function() {
+                const input = $(this).siblings('input');
+                const icon = $(this).find('i');
+                
+                if (input.attr('type') === 'password') {
+                    input.attr('type', 'text');
+                    icon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    input.attr('type', 'password');
+                    icon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+            
+            // Form validation
+            $('#registerForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                const password = $('#password').val();
+                const confirmPassword = $('#confirmPassword').val();
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    alert('Password must be at least 8 characters long!');
+                    return;
+                }
+                
+                // Show success message
+                alert('Registration successful! Please check your email for verification instructions.');
+                
+                // Redirect to login page
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/website/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:47 GMT -->
+</html>
+

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-appointments.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Appointments - Student Dashboard</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    
+    <style>
+        .dashboard-sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #008080 0%, #006666 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-content {
+            margin-left: 250px;
+            padding: 20px;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-brand {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .sidebar-nav .nav-link {
+            color: rgba(255,255,255,0.8);
+            padding: 12px 20px;
+            border: none;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .sidebar-nav .nav-link:hover,
+        .sidebar-nav .nav-link.active {
+            color: white;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-nav .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .appointment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #008080;
+            transition: transform 0.3s ease;
+        }
+        
+        .appointment-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .doctor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #008080;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .sidebar-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .dashboard-sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .dashboard-content {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #008080;
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+            }
+        }
+        
+        .status-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+        
+        .appointment-time {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Toggle Button (Mobile) -->
+    <button class="sidebar-toggle btn" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="dashboard-sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="d-flex align-items-center text-white">
+                <img src="https://phyzioline.vercel.app/assets/images/medical-icons-white.svg" alt="Logo"> 
+            </div>
+            <small class="text-white-50">Client Portal</small>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="student-dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="student-appointments.html">
+                        <i class="fas fa-calendar-check"></i>
+                        My Appointments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-medical-records.html">
+                        <i class="fas fa-file-medical"></i>
+                        Medical Records
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-courses.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        My Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-payments.html">
+                        <i class="fas fa-credit-card"></i>
+                        Payments & Billing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-profile.html">
+                        <i class="fas fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="student-notifications.html">
+                        <i class="fas fa-bell"></i>
+                        Notifications
+                        <span class="badge bg-danger ms-2">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#settingsMenu" aria-expanded="false" aria-controls="settingsMenu">
+                        <i class="fas fa-cog"></i>
+                        Dashboards
+                        <i class="fas fa-chevron-down float-end"></i>
+                    </a>
+                    <div class="collapse" id="settingsMenu">
+                        <ul class="nav flex-column ms-3">
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/doctor-dashboard/doctor-dashboard.html">doctor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/vendor-dashboard/vendor-dashboard.html">Vendor Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://phyzioline.vercel.app/company-dashboard/company-dashboard.html">Company Dashboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>  
+                <li class="nav-item mt-4">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i>
+                        Back to Website
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="dashboard-content">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">My Appointments</h2>
+                <p class="text-muted mb-0">Manage your medical consultations and bookings</p>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-primary">
+                    <i class="fas fa-filter me-2"></i>Filter
+                </button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookAppointmentModal">
+                    <i class="fas fa-plus me-2"></i>Book New Appointment
+                </button>
+            </div>
+        </div>
+
+        <!-- Appointment Tabs -->
+        <ul class="nav nav-pills mb-4" id="appointmentTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#upcoming-appointments">
+                    Upcoming <span class="badge bg-primary ms-1">3</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#pending-appointments">
+                    Pending <span class="badge bg-warning ms-1">1</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#past-appointments">
+                    Past <span class="badge bg-success ms-1">8</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Upcoming Appointments -->
+            <div class="tab-pane fade show active" id="upcoming-appointments">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">EW</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. Emily White</h6>
+                                        <small class="text-muted">Cardiologist</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-success status-badge">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Tomorrow</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Date:</small>
+                                    <div class="appointment-time"><strong>Dec 24, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Time:</small>
+                                    <div class="appointment-time"><strong>2:00 PM - 2:30 PM</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Type:</small>
+                                <p class="mb-0"><i class="fas fa-video text-primary me-2"></i>Video Consultation</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Reason:</small>
+                                <p class="mb-0">Follow-up for chest pain and blood pressure monitoring</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary flex-fill">
+                                    <i class="fas fa-video me-2"></i>Join Call
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">MJ</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. Michael Johnson</h6>
+                                        <small class="text-muted">General Practitioner</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-success status-badge">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Dec 26</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Date:</small>
+                                    <div class="appointment-time"><strong>Dec 26, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Time:</small>
+                                    <div class="appointment-time"><strong>10:00 AM - 10:30 AM</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Type:</small>
+                                <p class="mb-0"><i class="fas fa-hospital text-info me-2"></i>In-Person Visit</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Reason:</small>
+                                <p class="mb-0">Annual physical examination and health screening</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Get Directions
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">SL</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. Sarah Lee</h6>
+                                        <small class="text-muted">Mental Health Specialist</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-success status-badge">Confirmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Dec 28</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Date:</small>
+                                    <div class="appointment-time"><strong>Dec 28, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Time:</small>
+                                    <div class="appointment-time"><strong>3:00 PM - 4:00 PM</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Type:</small>
+                                <p class="mb-0"><i class="fas fa-video text-primary me-2"></i>Video Consultation</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Reason:</small>
+                                <p class="mb-0">Mental health session - stress and anxiety management</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-primary flex-fill">
+                                    <i class="fas fa-video me-2"></i>Join Call
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                                <button class="btn btn-outline-primary">
+                                    <i class="fas fa-bookmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Appointments -->
+            <div class="tab-pane fade" id="pending-appointments">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">RB</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. Robert Brown</h6>
+                                        <small class="text-muted">Dermatologist</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-warning status-badge">Pending Approval</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Requested 2 hours ago</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Requested Date:</small>
+                                    <div class="appointment-time"><strong>Dec 30, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Time:</small>
+                                    <div class="appointment-time"><strong>11:00 AM - 11:30 AM</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Type:</small>
+                                <p class="mb-0"><i class="fas fa-video text-primary me-2"></i>Video Consultation</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Reason:</small>
+                                <p class="mb-0">Skin rash examination and treatment consultation</p>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-warning flex-fill" disabled>
+                                    <i class="fas fa-clock me-2"></i>Awaiting Approval
+                                </button>
+                                <button class="btn btn-outline-danger">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Appointments -->
+            <div class="tab-pane fade" id="past-appointments">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">AM</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. Anna Martinez</h6>
+                                        <small class="text-muted">Pediatrician</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-success status-badge">Completed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Dec 20, 2024</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Date:</small>
+                                    <div class="appointment-time"><strong>Dec 20, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Duration:</small>
+                                    <div class="appointment-time"><strong>30 minutes</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Diagnosis:</small>
+                                <p class="mb-0">Common cold - prescribed rest and fluids</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Your Rating:</small>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span class="text-muted ms-2">5.0</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill">
+                                    <i class="fas fa-file-medical me-2"></i>View Report
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="appointment-card">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="doctor-avatar me-3">DT</div>
+                                    <div>
+                                        <h6 class="mb-0">Dr. David Thompson</h6>
+                                        <small class="text-muted">Orthopedic Surgeon</small>
+                                        <div class="mt-1">
+                                            <span class="badge bg-success status-badge">Completed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <small class="text-muted">Dec 15, 2024</small>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted">Date:</small>
+                                    <div class="appointment-time"><strong>Dec 15, 2024</strong></div>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted">Duration:</small>
+                                    <div class="appointment-time"><strong>45 minutes</strong></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Diagnosis:</small>
+                                <p class="mb-0">Knee pain assessment - recommended physical therapy</p>
+                            </div>
+                            <div class="mb-3">
+                                <small class="text-muted">Your Rating:</small>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span class="text-muted ms-2">4.0</span>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-outline-primary flex-fill">
+                                    <i class="fas fa-file-medical me-2"></i>View Report
+                                </button>
+                                <button class="btn btn-outline-secondary">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Appointment Modal -->
+    <div class="modal fade" id="bookAppointmentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Book New Appointment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Specialty</label>
+                                <select class="form-select">
+                                    <option>Select Specialty</option>
+                                    <option>General Practice</option>
+                                    <option>Cardiology</option>
+                                    <option>Dermatology</option>
+                                    <option>Mental Health</option>
+                                    <option>Orthopedics</option>
+                                    <option>Pediatrics</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Doctor</label>
+                                <select class="form-select">
+                                    <option>Select Doctor</option>
+                                    <option>Dr. Emily White - Cardiology</option>
+                                    <option>Dr. Michael Johnson - General Practice</option>
+                                    <option>Dr. Sarah Lee - Mental Health</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Date</label>
+                                <input type="date" class="form-control" min="2024-12-24">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Preferred Time</label>
+                                <select class="form-select">
+                                    <option>Select Time</option>
+                                    <option>9:00 AM</option>
+                                    <option>10:00 AM</option>
+                                    <option>11:00 AM</option>
+                                    <option>2:00 PM</option>
+                                    <option>3:00 PM</option>
+                                    <option>4:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Consultation Type</label>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="consultationType" id="video" checked>
+                                            <label class="form-check-label" for="video">
+                                                <i class="fas fa-video me-2"></i>Video Consultation
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="consultationType" id="inPerson">
+                                            <label class="form-check-label" for="inPerson">
+                                                <i class="fas fa-hospital me-2"></i>In-Person Visit
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Chief Complaint / Reason for Visit</label>
+                                <textarea class="form-control" rows="3" placeholder="Please describe your symptoms or reason for the appointment..."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Current Medications (if any)</label>
+                                <textarea class="form-control" rows="2" placeholder="List any medications you are currently taking..."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="../../cdn.jsdelivr.net/npm/bootstrap%405.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="../../code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Sidebar toggle for mobile
+            $('#sidebarToggle').on('click', function() {
+                $('#sidebar').toggleClass('show');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            $(document).on('click', function(e) {
+                if ($(window).width() <= 768) {
+                    if (!$(e.target).closest('#sidebar, #sidebarToggle').length) {
+                        $('#sidebar').removeClass('show');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+<!-- Mirrored from phyzioline.vercel.app/client-dashboard/student-appointments.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 25 Nov 2025 08:36:27 GMT -->
+</html>
+

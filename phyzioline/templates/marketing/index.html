@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phyzioline Super Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 720px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>Welcome to Phyzioline Super Platform</h1>
+        <p>Backend APIs are up and running. Connect your frontend to <code>/api/v1/</code> endpoints or sign in to the admin panel to manage content.</p>
+    </section>
+</body>
+</html>
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phyzioline — المنصة المتكاملة للعلاج الطبيعي</title>
+  <!-- Tailwind via CDN for rapid marketing launch -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- HTMX for lightweight dynamic behaviour -->
+  <script src="https://unpkg.com/htmx.org@1.11.0"></script>
+  <meta name="description" content="Phyzioline — بوابتك للعلاج الطبيعي: الدورات، الوظائف، السوق، العيادات والمزيد." />
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <header class="bg-emerald-600 text-white">
+    <div class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold">P</div>
+        <h1 class="text-2xl font-semibold">Phyzioline</h1>
+      </div>
+      <nav class="flex gap-4">
+        <a href="#features" class="hover:underline">المميزات</a>
+        <a href="#modules" class="hover:underline">الوحدات</a>
+        <a href="/admin/" class="hover:underline">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-8">
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl font-bold mb-4">منصة متكاملة للعلاج الطبيعي</h2>
+        <p class="mb-4">إطلاق سريع مع واجهة مستخدم قابلة للتوسع: صفحات تسويقية سريعة، لوحات تحكم، سوق متعدد البائعين، إدارة الحالات، والدورات.</p>
+        <div class="flex gap-3">
+          <a href="/explore" class="px-4 py-2 bg-emerald-500 text-white rounded">ابدأ الآن</a>
+          <a href="#modules" class="px-4 py-2 border rounded">تعرف أكثر</a>
+        </div>
+      </div>
+      <div>
+        <div class="bg-white p-6 rounded shadow">صورة/عرض توضيحي هنا</div>
+        <div class="mt-4 card p-4">
+          <h4 class="font-semibold mb-2">بيانات استكشافية (HTMX)</h4>
+          <div hx-get="/htmx/feed/" hx-trigger="load" hx-swap="innerHTML">
+            تحميل بيانات...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="modules" class="mt-12">
+      <h3 class="text-2xl font-semibold mb-4">الوحدات</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card p-4">
+          <h4 class="font-semibold">Accounts</h4>
+          <p class="text-sm mt-2">تسجيل المستخدم وإدارة الحسابات</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-semibold">Marketplace</h4>
+          <p class="text-sm mt-2">سوق متعدد البائعين للمنتجات والخدمات</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-semibold">Jobs</h4>
+          <p class="text-sm mt-2">منصة التوظيف والفرص المهنية</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-semibold">Courses</h4>
+          <p class="text-sm mt-2">دورات ومحتوى تعليمي</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-semibold">Clinics</h4>
+          <p class="text-sm mt-2">بروتوكولات العيادات وإدارتها</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="font-semibold">Feed & Ads</h4>
+          <p class="text-sm mt-2">نظام التغذية والإعلانات</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="mt-12">
+      <h3 class="text-2xl font-semibold mb-4">مميزات سريعة</h3>
+      <ul class="grid md:grid-cols-3 gap-4">
+        <li class="card">لوحات تحكم متقدمة</li>
+        <li class="card">تكامل ذكي مع AI</li>
+        <li class="card">دعم عربي كامل</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t mt-12">
+    <div class="max-w-6xl mx-auto p-6 text-center text-sm">© Phyzioline</div>
+  </footer>
+</body>
+</html>

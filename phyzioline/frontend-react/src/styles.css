@@ -1,0 +1,34 @@
+:root{
+  --phyzioline-primary: #008080;
+  --phyzioline-accent: #38B2AC;
+  --phyzioline-bg: #F9FAFB;
+}
+body{ margin:0; font-family: Inter, system-ui, Arial; background:var(--phyzioline-bg); color:#1f2937 }
+a{ color:inherit }
+header a{ color:inherit; text-decoration:none }
+
+section{ margin:1rem 0 }
+h2{ font-size:1.25rem }
+
+/* Feed styles */
+.feed-container{ display:flex; gap:20px; align-items:flex-start }
+.feed-main{ flex:1 }
+.feed-sidebar{ width:280px }
+.stories-row{ display:flex; gap:12px; margin-bottom:12px }
+.story-card{ background:white; border-radius:10px; padding:12px; min-width:120px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+
+.feed-card{ background:white; border-radius:12px; padding:14px; margin-bottom:14px; box-shadow:0 2px 8px rgba(3,7,18,0.04) }
+.feed-header{ display:flex; align-items:center; gap:12px; }
+.avatar{ width:44px; height:44px; border-radius:50%; background:var(--phyzioline-accent); color:white; display:flex; align-items:center; justify-content:center; font-weight:600 }
+.feed-meta{ flex:1 }
+.feed-title{ font-weight:700 }
+.feed-time{ font-size:12px; color:#6b7280 }
+.feed-media{ margin-top:12px; border-radius:8px; overflow:hidden; background:#e6f7f7; height:180px; display:flex; align-items:center; justify-content:center }
+.feed-media img{ width:100%; height:100%; object-fit:cover }
+.feed-body{ margin-top:10px; color:#374151 }
+.feed-actions{ display:flex; gap:10px; margin-top:12px; align-items:center }
+.action-btn{ border:1px solid #e6e8eb; padding:6px 10px; border-radius:8px; background:white; cursor:pointer }
+.action-btn.liked{ background:var(--phyzioline-primary); color:white; border-color:var(--phyzioline-primary) }
+.pill{ display:inline-block; padding:6px 10px; background:var(--phyzioline-accent); color:white; border-radius:999px; font-size:12px }
+
+.muted{ color:#6b7280 }
