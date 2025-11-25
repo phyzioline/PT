@@ -54,6 +54,26 @@ export default function Home() {
                   Explore Jobs
                 </Link>
               </div>
+              {/* Quick Modules Links */}
+              <div style={{ marginTop: 18, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {[
+                  { label: 'Feed', to: '/feed' },
+                  { label: 'Clinics', to: '/clinics' },
+                  { label: 'Courses', to: '/courses' },
+                  { label: 'Jobs', to: '/jobs' },
+                  { label: 'Marketplace', to: '/marketplace' },
+                  { label: 'Ads', to: '/ads' },
+                  { label: 'AI', to: '/ai' },
+                  { label: 'CRM', to: '/crm' },
+                  { label: 'Equivalency', to: '/equivalency' },
+                  { label: 'Global Stats', to: '/global-stats' },
+                  { label: 'Home Sessions', to: '/home-sessions' },
+                  { label: 'Payments', to: '/payments' },
+                  { label: 'Dashboard', to: '/dashboard' }
+                ].map(m => (
+                  <Link key={m.to} to={m.to} style={{ padding: '8px 12px', background: '#ffffff', border: '1px solid #e6eef0', borderRadius: 8, textDecoration: 'none', color: '#1f2937', fontWeight: 600 }}>{m.label}</Link>
+                ))}
+              </div>
             </div>
             <div>
               <img src="/assets/images/hero-consultation.jpg" alt="Medical consultation"

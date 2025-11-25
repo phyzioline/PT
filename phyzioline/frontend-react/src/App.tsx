@@ -23,6 +23,9 @@ import CRM from './pages/CRM'
 import GlobalStats from './pages/GlobalStats'
 import HomeSessions from './pages/HomeSessions'
 import Payments from './pages/Payments'
+import StaticLanding from './pages/StaticLanding'
+import WebsiteLanding from './pages/WebsiteLanding'
+import StudentDashboardMirror from './pages/StudentDashboardMirror'
 
 export default function App(){
   return (
@@ -49,6 +52,11 @@ export default function App(){
           <Route path='/global-stats' element={<GlobalStats/>} />
           <Route path='/home-sessions' element={<HomeSessions/>} />
           <Route path='/payments' element={<Payments/>} />
+          <Route path='/static-index' element={<StaticLanding/>} />
+          <Route path='/mirror/website' element={<WebsiteLanding/>} />
+          <Route path='/mirror/student-dashboard' element={<StudentDashboardMirror/>} />
+          <Route path='/equivalency' element={<ModuleList moduleName={'equivalency'} title={'Equivalency'} />} />
+          <Route path='/equivalency/:id' element={<ModuleDetail moduleName={'equivalency'} />} />
           <Route path='/ads' element={<ModuleList moduleName={'ads'} title={'Ads'} />} />
           <Route path='/ads/:id' element={<ModuleDetail moduleName={'ads'} />} />
         </Routes>

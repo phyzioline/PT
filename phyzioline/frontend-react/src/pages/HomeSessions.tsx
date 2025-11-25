@@ -10,15 +10,15 @@ const DEMO_SESSIONS = [
   { id: 6, therapist: 'Dr. Robert Chen', date: '2024-11-30', time: '4:00 PM', status: 'Scheduled', type: 'Massage Therapy', rating: null }
 ]
 
-export default function HomeSessions(){
+export default function HomeSessions() {
   const [sessions, setSessions] = useState<any[]>([])
   const [filter, setFilter] = useState('all')
   const [showSchedule, setShowSchedule] = useState(false)
   const [scheduleData, setScheduleData] = useState({ date: '', time: '', type: 'PT Session', notes: '' })
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchSessions()
-  },[])
+  }, [])
 
   const fetchSessions = async () => {
     try {
@@ -103,4 +103,70 @@ export default function HomeSessions(){
             <option value="Yoga Therapy">Yoga Therapy</option>
             <option value="Massage Therapy">Massage Therapy</option>
             <option value="Consultation">Consultation</option>
-          </select>\n          <textarea\n            placeholder="Special notes (optional)"\n            value={scheduleData.notes}\n            onChange={(e) => setScheduleData({ ...scheduleData, notes: e.target.value })}\n            style={{ width: '100%', padding: '10px 15px', border: '2px solid #e5e7eb', borderRadius: '6px', marginBottom: '1rem', fontFamily: 'inherit' }}\n            rows={2}\n          />\n          <button type="submit" style={{ background: '#008080', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>Schedule</button>\n        </form>\n      )}\n\n      {/* Filter */}\n      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>\n        {['all', 'Scheduled', 'Completed'].map(status => (\n          <button\n            key={status}\n            onClick={() => setFilter(status)}\n            style={{\n              padding: '8px 16px',\n              border: filter === status ? '2px solid #008080' : '2px solid #e5e7eb',\n              background: filter === status ? '#008080' : 'white',\n              color: filter === status ? 'white' : '#333',\n              borderRadius: '6px',\n              cursor: 'pointer',\n              fontWeight: 600\n            }}\n          >\n            {status}\n          </button>\n        ))}\n      </div>\n\n      {/* Sessions List */}\n      <div style={{ display: 'grid', gap: '1rem' }}>\n        {filtered.map(session => (\n          <div key={session.id} style={{ background: 'white', padding: '1.5rem', borderRadius: '10px', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', borderLeft: `4px solid ${session.status === 'Scheduled' ? '#008080' : '#38B2AC'}` }}>\n            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>\n              <div>\n                <h3 style={{ margin: 0, marginBottom: '0.5rem', fontSize: '1.1rem', fontWeight: 600 }}>{session.therapist}</h3>\n                <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>📋 {session.type}</div>\n              </div>\n              <span style={{ background: session.status === 'Scheduled' ? '#008080' : '#38B2AC', color: 'white', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600 }}>\n                {session.status}\n              </span>\n            </div>\n            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem', color: '#6b7280' }}>\n              <div>📅 {session.date}</div>\n              <div>🕐 {session.time}</div>\n            </div>\n            {session.status === 'Completed' && session.rating && (\n              <div style={{ marginTop: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '6px', color: '#6b7280' }}>\n                Rating: ⭐ {session.rating}\n              </div>\n            )}\n            {session.status === 'Scheduled' && (\n              <button style={{ background: '#008080', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600' }}>\n                Join Session\n              </button>\n            )}\n          </div>\n        ))}\n      </div>\n    </div>\n  )\n}
+          </select>
+          <textarea
+            placeholder="Special notes (optional)"
+            value={scheduleData.notes}
+            onChange={(e) => setScheduleData({ ...scheduleData, notes: e.target.value })}
+            style={{ width: '100%', padding: '10px 15px', border: '2px solid #e5e7eb', borderRadius: '6px', marginBottom: '1rem', fontFamily: 'inherit' }}
+            rows={2}
+          />
+          <button type="submit" style={{ background: '#008080', color: 'white', padding: '10px 20px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>Schedule</button>
+        </form>
+      )}
+
+      {/* Filter */}
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+        {['all', 'Scheduled', 'Completed'].map(status => (
+          <button
+            key={status}
+            onClick={() => setFilter(status)}
+            style={{
+              padding: '8px 16px',
+              border: filter === status ? '2px solid #008080' : '2px solid #e5e7eb',
+              background: filter === status ? '#008080' : 'white',
+              color: filter === status ? 'white' : '#333',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontWeight: 600
+            }}
+          >
+            {status}
+          </button>
+        ))}
+      </div>
+
+      {/* Sessions List */}
+      <div style={{ display: 'grid', gap: '1rem' }}>
+        {filtered.map(session => (
+          <div key={session.id} style={{ background: 'white', padding: '1.5rem', borderRadius: '10px', boxShadow: '0 2px 8px rgba(0,0,0,0.06)', borderLeft: `4px solid ${session.status === 'Scheduled' ? '#008080' : '#38B2AC'}` }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+              <div>
+                <h3 style={{ margin: 0, marginBottom: '0.5rem', fontSize: '1.1rem', fontWeight: 600 }}>{session.therapist}</h3>
+                <div style={{ color: '#6b7280', fontSize: '0.9rem' }}>📋 {session.type}</div>
+              </div>
+              <span style={{ background: session.status === 'Scheduled' ? '#008080' : '#38B2AC', color: 'white', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600 }}>
+                {session.status}
+              </span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem', color: '#6b7280' }}>
+              <div>📅 {session.date}</div>
+              <div>🕐 {session.time}</div>
+            </div>
+            {session.status === 'Completed' && session.rating && (
+              <div style={{ marginTop: '1rem', padding: '1rem', background: '#f9fafb', borderRadius: '6px', color: '#6b7280' }}>
+                Rating: ⭐ {session.rating}
+              </div>
+            )}
+            {session.status === 'Scheduled' && (
+              <button style={{
+                background: '#008080', color: 'white', padding: '8px 16px', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>
+                Join Session
+              </button>
+            )}
+          </div>
+        ))}
+    </div>
+    </div >
+  )
+}
