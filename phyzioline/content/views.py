@@ -6,7 +6,7 @@ from .models import EquivalenceRequirement, ExploreDataPoint, Ad
 from .serializers import EquivalenceRequirementSerializer, ExploreDataPointSerializer, AdSerializer
 from django.shortcuts import render
 from rest_framework import status
-from django.http import Http404
+from django.http import Http404, HttpResponse
 
 # API لجلب متطلبات المعادلة
 class EquivalenceRequirementList(generics.ListAPIView):
@@ -51,17 +51,57 @@ class ExploreDataList(APIView):
         return Response(data_by_type)
 
 def htmx_feed(request):
-    """Return an HTMX fragment containing latest explore datapoints (demo)."""
-    points = ExploreDataPoint.objects.order_by('-year')[:10]
-    return render(request, 'marketing/_htmx_feed_fragment.html', {'points': points})
+    """Return an HTMX fragment containing latest feed posts and ads."""
+    from feed.models import Post
+    from content.models import Ad
+    import random
+
+    # Fetch latest posts
+    posts = list(Post.objects.filter(is_published=True).select_related('author__user').order_by('-created_at')[:20])
+    
+    # Fetch some ads
+    ads = list(Ad.objects.filter(is_active=True)[:5])
+    
+    # Mix ads into posts (simple injection)
+    feed_items = []
+    ad_index = 0
+    for i, post in enumerate(posts):
+        feed_items.append({'type': 'post', 'data': post})
+        # Inject an ad every 3 posts
+        if (i + 1) % 3 == 0 and ad_index < len(ads):
+            feed_items.append({'type': 'ad', 'data': ads[ad_index]})
+            ad_index += 1
+            
+    return render(request, 'marketing/_htmx_feed_fragment.html', {'feed_items': feed_items})
 
 
 def htmx_like(request):
-    """Simple demo endpoint to respond to HTMX like POSTs. Returns a small fragment."""
-    label = request.POST.get('label', 'item')
-    return render(request, 'marketing/_htmx_like_fragment.html', {'label': label})
-    # Allow anonymous access for read-only dev purposes
-    permission_classes = [AllowAny]
+    """Handle like toggle via HTMX."""
+    from feed.models import Post, Like
+    from django.shortcuts import get_object_or_404
+    
+    if request.method == "POST":
+        post_id = request.POST.get('post_id')
+        if post_id and request.user.is_authenticated:
+            post = get_object_or_404(Post, id=post_id)
+            user_profile = request.user.userprofile
+            
+            like, created = Like.objects.get_or_create(user=user_profile, post=post)
+            if not created:
+                like.delete()
+                post.likes_count = max(0, post.likes_count - 1)
+                liked = False
+            else:
+                post.likes_count += 1
+                liked = True
+            post.save()
+            
+            return render(request, 'marketing/_htmx_like_fragment.html', {
+                'post': post, 
+                'liked': liked
+            })
+            
+    return HttpResponse(status=204)
 
 
 class ModulesOverview(APIView):

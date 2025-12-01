@@ -18,33 +18,42 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
-from django.views.static import serve
-from .views import serve_frontend
+from django.contrib.auth import views as auth_views
+from . import views as web_views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
 
 urlpatterns = [
-    # Marketing / core website (fast launch using Django templates)
-    path('assets/<path:path>', serve, {'document_root': settings.BASE_DIR / 'frontend_static/assets'}),
-    path('', serve_frontend, name='home'),
+    # Admin
     path('admin/', admin.site.urls),
-    # JWT Auth (Simple JWT)
+    
+    # Web Views (Server-side rendered)
+    path('', web_views.home, name='home'),
+    path('marketplace/', web_views.marketplace, name='marketplace'),
+    path('courses/', web_views.courses, name='courses'),
+    path('jobs/', web_views.jobs, name='jobs'),
+    path('sessions/', web_views.sessions, name='sessions'),
+    path('clinics/', web_views.clinics, name='clinics'),
+    path('global-stats/', web_views.global_stats, name='global_stats'),
+    path('profile/', web_views.profile, name='profile'),
+    
+    # Authentication Views
+    path('login/', auth_views.LoginView.as_view(template_name='auth/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+    
+    # JWT Auth (for API)
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
-    # API URLs
+    # API URLs (REST API endpoints)
     path('api/v1/', include('accounts.urls')),
     path('api/v1/jobs/', include('jobs.urls')),
     path('api/v1/marketplace/', include('marketplace.urls')),
     path('api/v1/courses/', include('courses.urls')),
     path('api/v1/clinics/', include('clinics.urls')),
-    # Content endpoints (Equivalence & Explore)
     path('api/v1/content/', include('content.urls')),
-    # HTMX demo endpoint
-    path('htmx/feed/', include('content.urls_htmx')),
     path('api/v1/sessions/', include('home_sessions.urls')),
     path('api/v1/feed/', include('feed.urls')),
     path('api/v1/ads/', include('ads.urls')),
@@ -53,9 +62,6 @@ urlpatterns = [
     path('api/v1/equivalency/', include('equivalency.urls')),
     path('api/v1/global-stats/', include('global_stats.urls')),
     path('api/v1/payments/', include('payments.urls')),
-    
-    # Catch-all for other static pages
-    path('<path:path>', serve_frontend, name='frontend'),
 ]
 
 # إضافة Media files في وضع التطوير

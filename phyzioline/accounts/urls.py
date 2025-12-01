@@ -1,5 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
+from phyzioline_core.views import api_root
 from .views import (
     RegisterView,
     CustomTokenObtainPairView,
@@ -11,6 +12,9 @@ from .views import (
 app_name = 'accounts'
 
 urlpatterns = [
+    # API Root - Must be first
+    path('', api_root, name='api_root'),
+    
     # Authentication endpoints
     path('auth/register/', RegisterView.as_view(), name='register'),
     path('auth/login/', CustomTokenObtainPairView.as_view(), name='login'),

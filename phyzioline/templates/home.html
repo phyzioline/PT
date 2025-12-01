@@ -1,0 +1,364 @@
+{% extends 'base.html' %}
+
+{% block title %}Phyzioline - Your Physical Therapy Hub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero {
+        background: var(--hero-gradient);
+        border-radius: 16px;
+        padding: 4rem 2rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        border: 1px solid var(--border-color);
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: var(--primary);
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    /* Stats */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .stat-card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 2rem 1.5rem;
+        text-align: center;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        box-shadow: var(--shadow);
+        transform: translateY(-4px);
+    }
+
+    .stat-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    /* Module Cards */
+    .module-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .module-card {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 2rem;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .module-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--primary-gradient);
+    }
+
+    .module-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--primary);
+    }
+
+    .module-icon {
+        font-size: 3rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+    }
+
+    .module-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+    }
+
+    .module-card p {
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    /* Features Section */
+    .features-section {
+        background: var(--white);
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        margin: 3rem 0;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .feature-item {
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: var(--secondary);
+        margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .feature-item p {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    /* Section Headings */
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero fade-in">
+    <h1>🏥 Welcome to Phyzioline</h1>
+    <p>All Physical Therapist Needs is Our Mission - From PT to PT</p>
+    {% if not user.is_authenticated %}
+    <div class="hero-buttons">
+        <a href="/register/" class="btn btn-primary">
+            <i class="fas fa-user-plus"></i> Get Started Free
+        </a>
+        <a href="/login/" class="btn btn-secondary">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Stats Section -->
+<div class="stats-grid fade-in">
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-user-md"></i></div>
+        <div class="stat-value">12K+</div>
+        <div class="stat-label">Active Therapists</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-box"></i></div>
+        <div class="stat-value">5K+</div>
+        <div class="stat-label">Products</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-certificate"></i></div>
+        <div class="stat-value">200+</div>
+        <div class="stat-label">Courses</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-value">50K+</div>
+        <div class="stat-label">Users</div>
+    </div>
+</div>
+
+<!-- Modules Section -->
+<div class="text-center mb-2">
+    <h2 class="section-title">🌟 Our Complete Platform</h2>
+    <p class="section-subtitle">Everything you need for your physiotherapy practice</p>
+</div>
+
+<div class="module-grid fade-in">
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-shopping-cart"></i></div>
+        <h3>Marketplace</h3>
+        <p>Shop PT equipment & medical supplies from trusted vendors</p>
+        <a href="/marketplace/" class="btn btn-primary">Browse Products</a>
+    </div>
+
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Courses & Training</h3>
+        <p>Learn from top professionals with certified courses</p>
+        <a href="/courses/" class="btn btn-primary">View Courses</a>
+    </div>
+
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3>Home Sessions</h3>
+        <p>Book physiotherapy sessions at your home</p>
+        <a href="/sessions/" class="btn btn-primary">Book Now</a>
+    </div>
+
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-briefcase"></i></div>
+        <h3>Jobs & Careers</h3>
+        <p>Find your dream physiotherapy job</p>
+        <a href="/jobs/" class="btn btn-primary">Browse Jobs</a>
+    </div>
+
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-clinic-medical"></i></div>
+        <h3>Clinic Management</h3>
+        <p>Complete ERP system for your clinic</p>
+        <a href="/clinics/" class="btn btn-primary">Get Started</a>
+    </div>
+
+    <div class="module-card">
+        <div class="module-icon"><i class="fas fa-globe"></i></div>
+        <h3>Global Insights</h3>
+        <p>Worldwide PT data, salaries & licensing</p>
+        <a href="/global-stats/" class="btn btn-primary">Explore Data</a>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="features-section fade-in">
+    <div class="text-center">
+        <h2 class="section-title">Why Choose Phyzioline?</h2>
+        <p class="section-subtitle">The most comprehensive platform for physiotherapy professionals</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Trusted & Secure</h4>
+            <p>Your data is safe with enterprise-grade security</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h4>Mobile Friendly</h4>
+            <p>Access from any device, anywhere, anytime</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-headset"></i></div>
+            <h4>24/7 Support</h4>
+            <p>Professional support whenever you need it</p>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h4>Analytics & Insights</h4>
+            <p>Track your performance with detailed reports</p>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="text-center mb-2" style="padding: 3rem 1rem; background: var(--hero-gradient); border-radius: 16px;">
+    <h2 class="section-title">Ready to Get Started?</h2>
+    <p class="section-subtitle">Join thousands of physiotherapy professionals worldwide</p>
+    {% if not user.is_authenticated %}
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/register/" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">
+            <i class="fas fa-rocket"></i> Start Free Trial
+        </a>
+        <a href="/marketplace/" class="btn btn-orange" style="font-size: 1.1rem; padding: 1rem 2rem;">
+            <i class="fas fa-shopping-bag"></i> Explore Marketplace
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Add smooth animations on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.module-card, .stat-card, .feature-item').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+{% endblock %}

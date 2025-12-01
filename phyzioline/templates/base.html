@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Phyzioline - The World's Largest Physiotherapy Platform">
+    <title>{% block title %}Phyzioline - Physical Therapy Ecosystem{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Phyzioline Brand Colors */
+            --primary: #00BCD4;
+            --primary-dark: #0097A7;
+            --primary-light: #B2EBF2;
+            --secondary: #FF5722;
+            --secondary-dark: #E64A19;
+            --secondary-light: #FFCCBC;
+            --accent: #4CAF50;
+
+            /* Gradients */
+            --primary-gradient: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
+            --secondary-gradient: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+            --hero-gradient: linear-gradient(135deg, rgba(0, 188, 212, 0.1) 0%, rgba(255, 87, 34, 0.05) 100%);
+
+            /* Neutrals */
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --gray: #9E9E9E;
+            --dark-gray: #424242;
+            --black: #212121;
+
+            /* Backgrounds */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8F9FA;
+
+            /* Text */
+            --text-primary: #212121;
+            --text-secondary: #757575;
+            --text-white: #FFFFFF;
+
+            /* Borders & Shadows */
+            --border-color: #E0E0E0;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            --shadow-hover: 0 12px 32px rgba(0, 188, 212, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .navbar-nav a:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .navbar-nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            position: relative;
+            color: var(--text-primary);
+        }
+
+        .nav-icon:hover {
+            background: var(--light-gray);
+            color: var(--primary);
+        }
+
+        .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-orange {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-orange:hover {
+            background: var(--secondary-dark);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-1 {
+            margin-top: 1rem;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+            {
+            % block extra_css %
+        }
+
+            {
+            % endblock %
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">
+                <i class="fas fa-heartbeat"></i>
+                Phyzioline
+            </a>
+
+            <ul class="navbar-nav">
+                <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">
+                        <i class="fas fa-home"></i> Home
+                    </a></li>
+                <li><a href="/marketplace/" class="{% if 'marketplace' in request.path %}active{% endif %}">
+                        <i class="fas fa-shopping-cart"></i> Marketplace
+                    </a></li>
+                <li><a href="/courses/" class="{% if 'courses' in request.path %}active{% endif %}">
+                        <i class="fas fa-graduation-cap"></i> Courses
+                    </a></li>
+                <li><a href="/jobs/" class="{% if 'jobs' in request.path %}active{% endif %}">
+                        <i class="fas fa-briefcase"></i> Jobs
+                    </a></li>
+                <li><a href="/sessions/" class="{% if 'sessions' in request.path %}active{% endif %}">
+                        <i class="fas fa-calendar-alt"></i> Sessions
+                    </a></li>
+
+                {% if user.is_authenticated %}
+                <li>
+                    <span class="nav-icon">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </span>
+                </li>
+                <li><a href="/profile/">
+                        <i class="fas fa-user-circle"></i> {{ user.username }}
+                    </a></li>
+                <li><a href="/logout/">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a></li>
+                {% else %}
+                <li><a href="/login/" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer
+        style="text-align: center; padding: 3rem 2rem; margin-top: 4rem; border-top: 1px solid var(--border-color); background: var(--white);">
+        <p style="color: var(--text-secondary);">
+            Made with <i class="fas fa-heart" style="color: var(--secondary);"></i> for Physiotherapy Professionals
+            Worldwide
+        </p>
+        <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.9rem;">
+            © 2025 Phyzioline. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Global CSRF Token for AJAX requests
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        {% block extra_js %} {% endblock %}
+    </script>
+</body>
+
+</html>

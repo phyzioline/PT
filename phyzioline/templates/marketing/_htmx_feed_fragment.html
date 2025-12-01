@@ -1,10 +1,130 @@
-<div class="space-y-2">
-  {% for p in points %}
-    <div class="p-2 bg-white rounded shadow">
-      <div class="text-sm font-semibold">{{ p.country }} — {{ p.get_data_type_display }}</div>
-      <div class="text-xs text-gray-600">{{ p.value }} ({{ p.year }})</div>
+{% load static %}
+<div class="space-y-6 max-w-xl mx-auto">
+  {% for item in feed_items %}
+
+  {% if item.type == 'post' %}
+  <!-- Post Card -->
+  <div
+    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
+    <!-- Header -->
+    <div class="p-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+          {% if item.data.author.profile_picture %}
+          <img src="{{ item.data.author.profile_picture.url }}" alt="{{ item.data.author.user.username }}"
+            class="w-full h-full object-cover">
+          {% else %}
+          <span class="text-gray-500 font-bold text-lg">{{ item.data.author.user.username|slice:":1"|upper }}</span>
+          {% endif %}
+        </div>
+        <div>
+          <h3 class="font-semibold text-gray-900 text-sm leading-tight">{{ item.data.author.user.username }}</h3>
+          <div class="text-xs text-gray-500 flex items-center gap-1">
+            <span>{{ item.data.created_at|date:"M d, Y" }}</span>
+            <span>•</span>
+            <span class="bg-gray-100 px-1.5 py-0.5 rounded text-[10px]">{{ item.data.get_category_display }}</span>
+          </div>
+        </div>
+      </div>
+      <button class="text-gray-400 hover:text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+        </svg>
+      </button>
     </div>
+
+    <!-- Content -->
+    <div class="px-4 pb-2">
+      <p class="text-gray-800 text-sm leading-relaxed whitespace-pre-wrap">{{ item.data.content }}</p>
+    </div>
+
+    <!-- Media -->
+    {% if item.data.image %}
+    <div class="mt-2">
+      <img src="{{ item.data.image.url }}" alt="Post image" class="w-full h-auto object-cover max-h-[500px]">
+    </div>
+    {% endif %}
+
+    <!-- Stats -->
+    <div class="px-4 py-2 flex items-center justify-between text-xs text-gray-500 border-b border-gray-50">
+      <div class="flex items-center gap-1">
+        <div class="bg-blue-500 rounded-full p-0.5">
+          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+          </svg>
+        </div>
+        <span id="likes-count-{{ item.data.id }}">{{ item.data.likes_count }}</span>
+      </div>
+      <div>
+        <span>{{ item.data.comments_count }} comments</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="px-2 py-1 flex items-center justify-between">
+      <div id="like-btn-{{ item.data.id }}" class="flex-1">
+        {% include "marketing/_htmx_like_fragment.html" with post=item.data liked=False %}
+      </div>
+
+      <button
+        class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-lg transition-colors text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+        <span class="text-sm font-medium">Comment</span>
+      </button>
+
+      <button
+        class="flex-1 flex items-center justify-center gap-2 py-2 hover:bg-gray-50 rounded-lg transition-colors text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        </svg>
+        <span class="text-sm font-medium">Share</span>
+      </button>
+    </div>
+  </div>
+
+  {% elif item.type == 'ad' %}
+  <!-- Ad Card -->
+  <div class="bg-white rounded-xl shadow-sm border border-orange-100 overflow-hidden relative">
+    <div class="absolute top-2 right-2 bg-gray-100/80 backdrop-blur text-[10px] px-2 py-0.5 rounded text-gray-500">
+      Sponsored</div>
+    <div class="p-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center text-orange-600 font-bold">
+        Ad
+      </div>
+      <div>
+        <h3 class="font-bold text-gray-900 text-sm">{{ item.data.title }}</h3>
+        <p class="text-xs text-gray-500">{{ item.data.sponsor }}</p>
+      </div>
+    </div>
+    {% if item.data.image %}
+    <img src="{{ item.data.image.url }}" class="w-full h-48 object-cover">
+    {% endif %}
+    <div class="p-4 bg-orange-50/30">
+      <p class="text-sm text-gray-700 mb-3">{{ item.data.content|truncatechars:100 }}</p>
+      <a href="{{ item.data.link }}" target="_blank"
+        class="block w-full text-center py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-sm font-semibold transition-colors">
+        Learn More
+      </a>
+    </div>
+  </div>
+  {% endif %}
+
   {% empty %}
-    <div class="p-2">لا توجد بيانات</div>
+  <div class="text-center py-12 bg-white rounded-xl shadow-sm border border-dashed border-gray-300">
+    <div class="mx-auto w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-3">
+      <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+        </path>
+      </svg>
+    </div>
+    <h3 class="text-gray-900 font-medium">No posts yet</h3>
+    <p class="text-gray-500 text-sm mt-1">Be the first to share something!</p>
+  </div>
   {% endfor %}
 </div>

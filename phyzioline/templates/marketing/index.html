@@ -1,134 +1,261 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Phyzioline Super Platform</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: #f8fafc;
-            color: #0f172a;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            max-width: 720px;
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #475569;
-        }
-    </style>
-</head>
-<body>
-    <section class="hero">
-        <h1>Welcome to Phyzioline Super Platform</h1>
-        <p>Backend APIs are up and running. Connect your frontend to <code>/api/v1/</code> endpoints or sign in to the admin panel to manage content.</p>
-    </section>
-</body>
-</html>
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phyzioline — المنصة المتكاملة للعلاج الطبيعي</title>
-  <!-- Tailwind via CDN for rapid marketing launch -->
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- HTMX for lightweight dynamic behaviour -->
-  <script src="https://unpkg.com/htmx.org@1.11.0"></script>
-  <meta name="description" content="Phyzioline — بوابتك للعلاج الطبيعي: الدورات، الوظائف، السوق، العيادات والمزيد." />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            emerald: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- HTMX -->
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+
+  <style>
+    body {
+      background-color: #f0f2f5;
+      /* Facebook-like background */
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <header class="bg-emerald-600 text-white">
-    <div class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+
+<body class="text-gray-800 font-sans antialiased">
+
+  <!-- Navbar -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-4">
-        <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center font-bold">P</div>
-        <h1 class="text-2xl font-semibold">Phyzioline</h1>
+        <div
+          class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xl shadow-lg">
+          P</div>
+        <h1 class="text-2xl font-bold text-emerald-700 hidden sm:block">Phyzioline</h1>
+
+        <!-- Search -->
+        <div class="mr-6 hidden md:block">
+          <div class="relative">
+            <input type="text" placeholder="بحث في فيزيولاين..."
+              class="bg-gray-100 rounded-full px-4 py-2 pr-10 w-64 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all">
+            <svg class="w-5 h-5 text-gray-400 absolute top-2.5 right-3" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </div>
       </div>
-      <nav class="flex gap-4">
-        <a href="#features" class="hover:underline">المميزات</a>
-        <a href="#modules" class="hover:underline">الوحدات</a>
-        <a href="/admin/" class="hover:underline">Admin</a>
+
+      <nav class="flex items-center gap-2 sm:gap-6">
+        <a href="#" class="p-2 text-emerald-600 bg-emerald-50 rounded-lg">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+            </path>
+          </svg>
+        </a>
+        <a href="#modules" class="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors relative">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+            </path>
+          </svg>
+          <span class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
+        </a>
+        <a href="/admin/" class="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+        </a>
       </nav>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto p-8">
-    <section class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h2 class="text-3xl font-bold mb-4">منصة متكاملة للعلاج الطبيعي</h2>
-        <p class="mb-4">إطلاق سريع مع واجهة مستخدم قابلة للتوسع: صفحات تسويقية سريعة، لوحات تحكم، سوق متعدد البائعين، إدارة الحالات، والدورات.</p>
-        <div class="flex gap-3">
-          <a href="/explore" class="px-4 py-2 bg-emerald-500 text-white rounded">ابدأ الآن</a>
-          <a href="#modules" class="px-4 py-2 border rounded">تعرف أكثر</a>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Left Sidebar (Navigation) -->
+      <div class="hidden lg:block lg:col-span-3 xl:col-span-3">
+        <div class="sticky top-24 space-y-4">
+          <a href="#"
+            class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg transition-colors font-semibold text-gray-700">
+            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+            </div>
+            الملف الشخصي
+          </a>
+          <a href="#"
+            class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg transition-colors font-semibold text-gray-700">
+            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" class="w-8 h-8" alt="Friends">
+            الأصدقاء
+          </a>
+          <a href="#"
+            class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg transition-colors font-semibold text-gray-700">
+            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910766.png" class="w-8 h-8" alt="Groups">
+            المجموعات
+          </a>
+          <a href="#"
+            class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg transition-colors font-semibold text-gray-700">
+            <img src="https://cdn-icons-png.flaticon.com/512/2910/2910768.png" class="w-8 h-8" alt="Marketplace">
+            المتجر (Marketplace)
+          </a>
+          <hr class="border-gray-300 my-2">
+          <h3 class="text-gray-500 font-semibold px-2 mb-2">اختصاراتك</h3>
+          <a href="#"
+            class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg transition-colors text-sm font-medium text-gray-600">
+            <div class="w-8 h-8 rounded bg-gray-300"></div>
+            مجموعة العلاج الطبيعي
+          </a>
         </div>
       </div>
-      <div>
-        <div class="bg-white p-6 rounded shadow">صورة/عرض توضيحي هنا</div>
-        <div class="mt-4 card p-4">
-          <h4 class="font-semibold mb-2">بيانات استكشافية (HTMX)</h4>
-          <div hx-get="/htmx/feed/" hx-trigger="load" hx-swap="innerHTML">
-            تحميل بيانات...
+
+      <!-- Main Feed -->
+      <div class="lg:col-span-6 xl:col-span-6">
+
+        <!-- Create Post Widget -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+          <div class="flex gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0"></div>
+            <input type="text" placeholder="بم تفكر يا دكتور؟"
+              class="w-full bg-gray-100 rounded-full px-4 hover:bg-gray-200 transition-colors focus:outline-none cursor-pointer">
+          </div>
+          <div class="border-t pt-3 flex justify-between px-4">
+            <button
+              class="flex items-center gap-2 text-gray-500 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors">
+              <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                </path>
+              </svg>
+              <span class="font-medium text-sm">بث مباشر</span>
+            </button>
+            <button
+              class="flex items-center gap-2 text-gray-500 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors">
+              <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                </path>
+              </svg>
+              <span class="font-medium text-sm">صورة/فيديو</span>
+            </button>
+            <button
+              class="flex items-center gap-2 text-gray-500 hover:bg-gray-100 px-4 py-2 rounded-lg transition-colors">
+              <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-medium text-sm">شعور/نشاط</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Container -->
+        <div id="feed-container" hx-get="/htmx/feed/" hx-trigger="load" hx-swap="innerHTML">
+          <!-- Loading State -->
+          <div class="space-y-4 animate-pulse">
+            <div class="bg-white p-4 rounded-xl shadow-sm h-48"></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm h-48"></div>
+            <div class="bg-white p-4 rounded-xl shadow-sm h-48"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar (Sponsored & Contacts) -->
+      <div class="hidden lg:block lg:col-span-3 xl:col-span-3">
+        <div class="sticky top-24">
+          <h3 class="text-gray-500 font-semibold mb-4">ممول (Sponsored)</h3>
+          <div class="space-y-4 mb-6">
+            <a href="#" class="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+              <div class="w-24 h-24 bg-gray-200 rounded-lg flex-shrink-0"></div>
+              <div>
+                <h4 class="font-semibold text-gray-900 text-sm">عيادات النور</h4>
+                <p class="text-xs text-gray-500">phyzioline.com</p>
+              </div>
+            </a>
+            <a href="#" class="flex items-center gap-3 hover:bg-gray-100 p-2 rounded-lg transition-colors">
+              <div class="w-24 h-24 bg-gray-200 rounded-lg flex-shrink-0"></div>
+              <div>
+                <h4 class="font-semibold text-gray-900 text-sm">كورس العلاج اليدوي</h4>
+                <p class="text-xs text-gray-500">phyzioline.com</p>
+              </div>
+            </a>
+          </div>
+
+          <hr class="border-gray-300 my-4">
+
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-gray-500 font-semibold">جهات الاتصال</h3>
+            <div class="flex gap-2 text-gray-500">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg cursor-pointer">
+              <div class="relative">
+                <div class="w-8 h-8 rounded-full bg-gray-300"></div>
+                <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white">
+                </div>
+              </div>
+              <span class="font-medium text-sm">د. أحمد محمد</span>
+            </div>
+            <div class="flex items-center gap-3 p-2 hover:bg-gray-200 rounded-lg cursor-pointer">
+              <div class="relative">
+                <div class="w-8 h-8 rounded-full bg-gray-300"></div>
+                <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-white">
+                </div>
+              </div>
+              <span class="font-medium text-sm">د. سارة علي</span>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="modules" class="mt-12">
-      <h3 class="text-2xl font-semibold mb-4">الوحدات</h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="card p-4">
-          <h4 class="font-semibold">Accounts</h4>
-          <p class="text-sm mt-2">تسجيل المستخدم وإدارة الحسابات</p>
-        </div>
-        <div class="card p-4">
-          <h4 class="font-semibold">Marketplace</h4>
-          <p class="text-sm mt-2">سوق متعدد البائعين للمنتجات والخدمات</p>
-        </div>
-        <div class="card p-4">
-          <h4 class="font-semibold">Jobs</h4>
-          <p class="text-sm mt-2">منصة التوظيف والفرص المهنية</p>
-        </div>
-        <div class="card p-4">
-          <h4 class="font-semibold">Courses</h4>
-          <p class="text-sm mt-2">دورات ومحتوى تعليمي</p>
-        </div>
-        <div class="card p-4">
-          <h4 class="font-semibold">Clinics</h4>
-          <p class="text-sm mt-2">بروتوكولات العيادات وإدارتها</p>
-        </div>
-        <div class="card p-4">
-          <h4 class="font-semibold">Feed & Ads</h4>
-          <p class="text-sm mt-2">نظام التغذية والإعلانات</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="mt-12">
-      <h3 class="text-2xl font-semibold mb-4">مميزات سريعة</h3>
-      <ul class="grid md:grid-cols-3 gap-4">
-        <li class="card">لوحات تحكم متقدمة</li>
-        <li class="card">تكامل ذكي مع AI</li>
-        <li class="card">دعم عربي كامل</li>
-      </ul>
-    </section>
+    </div>
   </main>
 
-  <footer class="bg-white border-t mt-12">
-    <div class="max-w-6xl mx-auto p-6 text-center text-sm">© Phyzioline</div>
-  </footer>
 </body>
+
 </html>
